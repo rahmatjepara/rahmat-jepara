@@ -1,0 +1,1923 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Produk | Rahmat Jepara</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+
+    <style>
+
+        /* =====================================
+           PRODUK
+        ===================================== */
+
+        .products-page {
+            padding: 100px 9% 120px;
+            background: #f5f0e7;
+        }
+
+
+        .products-header {
+            max-width: 800px;
+            margin-bottom: 60px;
+        }
+
+
+        .products-header .small-title {
+            color: #9b6b3d;
+            letter-spacing: 5px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+
+        .products-header h1 {
+            font-family: Georgia, serif;
+            font-size: 55px;
+            font-weight: 400;
+            margin: 0;
+            color: #211b17;
+        }
+
+
+        .products-header p {
+            margin-top: 20px;
+            color: #6d6259;
+            line-height: 1.8;
+        }
+
+
+        /* =====================================
+           GRID
+        ===================================== */
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 55px 30px;
+        }
+
+
+        /* =====================================
+           CARD
+        ===================================== */
+
+        .products-page .product-card {
+            background: #eee6d8;
+            overflow: hidden;
+        }
+
+
+        .products-page .product-image {
+            position: relative;
+
+            width: 100%;
+            height: 520px;
+
+            overflow: hidden;
+
+            cursor: zoom-in;
+
+            background: #ddd0bd;
+        }
+
+
+        .products-page .product-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            display: block;
+
+            transition: transform 0.4s ease;
+        }
+
+
+        .products-page .product-image:hover img {
+            transform: scale(1.03);
+        }
+
+
+        /* =====================================
+           STATUS
+        ===================================== */
+
+        .product-status {
+            position: absolute;
+
+            top: 20px;
+            left: 20px;
+
+            z-index: 5;
+
+            padding: 9px 15px;
+
+            background: white;
+
+            font-size: 11px;
+            font-weight: bold;
+
+            letter-spacing: 2px;
+        }
+
+
+        .product-status.available {
+            color: #23833b;
+        }
+
+
+        .product-status.sold-out {
+            color: #c62828;
+        }
+
+
+        /* =====================================
+           INFO
+        ===================================== */
+
+        .products-page .product-info {
+            padding: 28px;
+            background: #f5f0e7;
+        }
+
+
+        .products-page .product-number {
+            color: #a16f3e;
+
+            letter-spacing: 4px;
+
+            font-size: 11px;
+
+            margin-bottom: 12px;
+        }
+
+
+        .products-page .product-info h2 {
+            font-family: Georgia, serif;
+
+            font-size: 30px;
+
+            font-weight: 400;
+
+            margin: 0 0 12px;
+
+            color: #211b17;
+        }
+
+
+        .products-page .product-info p {
+            color: #6d6259;
+
+            line-height: 1.7;
+
+            font-size: 14px;
+
+            margin-bottom: 20px;
+        }
+
+
+        .product-tags {
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+        }
+
+
+        .product-tags span {
+            background: #e6dccb;
+
+            color: #67594b;
+
+            padding: 8px 12px;
+
+            font-size: 11px;
+        }
+
+
+
+        /* =====================================
+           TOMBOL HARGA & PESAN WHATSAPP
+        ===================================== */
+
+        .product-actions {
+            display: grid;
+            grid-template-columns: 0.85fr 1.4fr;
+            gap: 10px;
+            margin-top: 22px;
+            padding-top: 20px;
+            border-top: 1px solid #e1d7c7;
+        }
+
+        .product-action-button {
+            min-height: 46px;
+            border: 1px solid #281a12;
+            padding: 12px 14px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.8px;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .product-action-button svg {
+            width: 17px;
+            height: 17px;
+            flex-shrink: 0;
+        }
+
+        .price-button {
+            background: transparent;
+            color: #281a12;
+        }
+
+        .price-button:hover {
+            background: #e9dfd0;
+            transform: translateY(-2px);
+        }
+
+        .order-button {
+            background: #281a12;
+            color: white;
+        }
+
+        .order-button:hover {
+            background: #4a2d1c;
+            transform: translateY(-2px);
+        }
+
+
+        /* =====================================
+           FILTER PRODUK
+        ===================================== */
+
+        .product-filter {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 0 0 45px;
+            padding-bottom: 22px;
+            border-bottom: 1px solid #ded3c3;
+        }
+
+        .filter-button {
+            border: 1px solid #cdbda8;
+            background: transparent;
+            color: #5f5145;
+            padding: 11px 16px;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .filter-button:hover {
+            border-color: #281a12;
+            color: #281a12;
+            transform: translateY(-2px);
+        }
+
+        .filter-button.active {
+            background: #281a12;
+            border-color: #281a12;
+            color: #ffffff;
+        }
+
+        .products-page .product-card {
+            transition: opacity 0.22s ease, transform 0.22s ease, box-shadow 0.3s ease;
+        }
+
+        .products-page .product-card.filter-hidden {
+            display: none;
+        }
+
+        .filter-empty {
+            display: none;
+            grid-column: 1 / -1;
+            padding: 55px 25px;
+            text-align: center;
+            background: #eee6d8;
+            color: #6d6259;
+        }
+
+        .filter-empty strong {
+            display: block;
+            margin-bottom: 8px;
+            font-family: Georgia, serif;
+            font-size: 24px;
+            font-weight: 400;
+            color: #281a12;
+        }
+
+
+        /* =====================================
+           MODAL
+        ===================================== */
+
+        .image-modal {
+            position: fixed;
+
+            inset: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: rgba(15, 12, 10, 0.96);
+
+            display: none;
+
+            align-items: center;
+            justify-content: center;
+
+            z-index: 99999;
+        }
+
+
+        .image-modal.active {
+            display: flex;
+        }
+
+
+        /* =====================================
+           AREA GAMBAR
+        ===================================== */
+
+        .modal-image-wrapper {
+            width: 90vw;
+            height: 85vh;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+
+            position: relative;
+
+            cursor: grab;
+        }
+
+
+        .modal-image-wrapper.dragging {
+            cursor: grabbing;
+        }
+
+
+        .modal-image {
+            max-width: 90%;
+            max-height: 90%;
+
+            object-fit: contain;
+
+            user-select: none;
+
+            -webkit-user-drag: none;
+
+            transform-origin: center center;
+
+            transition: transform 0.12s ease;
+        }
+
+
+        /* =====================================
+           TOMBOL X
+        ===================================== */
+
+        .modal-close {
+            position: fixed;
+
+            top: 25px;
+            right: 30px;
+
+            width: 52px;
+            height: 52px;
+
+            border: none;
+
+            border-radius: 50%;
+
+            background: white;
+
+            color: #211b17;
+
+            font-size: 32px;
+
+            line-height: 1;
+
+            cursor: pointer;
+
+            z-index: 100005;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+        }
+
+
+        .modal-close:hover {
+            transform: scale(1.08);
+        }
+
+
+        /* =====================================
+           ZOOM BUTTON
+        ===================================== */
+
+        .zoom-controls {
+            position: fixed;
+
+            bottom: 30px;
+            left: 50%;
+
+            transform: translateX(-50%);
+
+            display: flex;
+
+            gap: 8px;
+
+            z-index: 100005;
+        }
+
+
+        .zoom-controls button {
+            width: 50px;
+            height: 50px;
+
+            border: none;
+
+            border-radius: 6px;
+
+            background: white;
+
+            color: #211b17;
+
+            font-size: 21px;
+
+            cursor: pointer;
+        }
+
+
+        .zoom-controls button:hover {
+            transform: translateY(-2px);
+        }
+
+
+        .zoom-level {
+            width: 75px !important;
+
+            font-size: 12px !important;
+        }
+
+
+
+        /* =====================================
+           RESPONSIVE
+        ===================================== */
+
+        @media (max-width: 900px) {
+
+            .products-page {
+                padding: 70px 5% 90px;
+            }
+
+
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .products-header h1 {
+                font-size: 42px;
+            }
+
+
+            .products-page .product-image {
+                height: 450px;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+
+            .products-page .product-image {
+                height: 350px;
+            }
+
+
+            .products-header h1 {
+                font-size: 36px;
+            }
+
+
+            .modal-close {
+                top: 15px;
+                right: 15px;
+            }
+
+
+            .modal-image-wrapper {
+                width: 100vw;
+                height: 85vh;
+            }
+
+
+            .product-actions {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+
+        @media (max-width: 600px) {
+            .product-filter {
+                gap: 8px;
+                margin-bottom: 30px;
+            }
+
+            .filter-button {
+                flex: 1 1 calc(50% - 8px);
+                padding: 11px 10px;
+                font-size: 9px;
+            }
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================
+         NAVBAR
+         SAMA DENGAN INDEX.HTML
+    ====================================== -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="index.html" class="logo brand-logo" aria-label="Rahmat Jepara - Home">
+                <img src="images/logo-rahmat-jepara.png" alt="Rahmat Jepara Furniture">
+            </a>
+
+            <nav class="nav-menu" id="navMenu">
+
+                <a href="index.html">Home</a>
+                <a href="produk.html" class="active">Produk</a>
+                <a href="customer-service.html">Customer Service</a>
+                <a href="kontak.html">Kontak</a>
+
+            </nav>
+
+            <button class="menu-toggle" id="menuToggle">
+                ☰
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =====================================
+         PRODUK
+    ====================================== -->
+
+    <main class="products-page">
+
+
+        <div class="products-header">
+
+            <div class="small-title">
+                PRODUK KAMI
+            </div>
+
+            <h1>
+                Koleksi Furniture
+            </h1>
+
+            <p>
+                Pilihan furniture kayu jati Jepara dengan karakter
+                alami, desain elegan, dan pengerjaan handmade.
+            </p>
+
+        </div>
+
+
+        <!-- =====================================
+             FILTER PRODUK
+        ====================================== -->
+
+        <div class="product-filter" id="productFilter">
+
+            <button type="button" class="filter-button active" data-filter="semua">
+                SEMUA
+            </button>
+
+            <button type="button" class="filter-button" data-filter="meja-makan">
+                MEJA MAKAN
+            </button>
+
+            <button type="button" class="filter-button" data-filter="meja-rias">
+                MEJA RIAS
+            </button>
+
+            <button type="button" class="filter-button" data-filter="tempat-tidur">
+                TEMPAT TIDUR
+            </button>
+
+            <button type="button" class="filter-button" data-filter="kursi-tamu">
+                KURSI TAMU
+            </button>
+
+            <button type="button" class="filter-button" data-filter="available">
+                AVAILABLE
+            </button>
+
+        </div>
+
+
+
+        <div class="products-grid" id="productsGrid">
+
+
+            <!-- =================================
+                 01 MEJA MAKAN
+            ================================== -->
+
+            <div class="product-card" data-category="meja-makan">
+
+                <div
+                    class="product-image"
+                    onclick="openImage('images/meja-makan-1.jpg')"
+                >
+
+                    <span class="product-status available">
+                        AVAILABLE
+                    </span>
+
+                    <img
+                        src="images/meja-makan-1.jpg"
+                        alt="Meja Makan Jati"
+                    >
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <div class="product-number">
+                        KOLEKSI 01
+                    </div>
+
+                    <h2>
+                        Meja Makan Jati
+                    </h2>
+
+                    <p>
+                        Meja makan kayu jati dengan karakter serat
+                        kayu alami dan desain elegan untuk ruang makan.
+                    </p>
+
+                    <div class="product-tags">
+
+                        <span>
+                            Kayu Jati
+                        </span>
+
+                        <span>
+                            Handmade
+                        </span>
+
+                        <span>
+                            Jepara
+                        </span>
+
+                    </div>
+
+                    <div class="product-actions">
+
+                        <button
+                            type="button"
+                            class="product-action-button price-button"
+                            onclick="sendProductToWhatsApp(this, 'harga')"
+                        >
+                            HARGA
+                        </button>
+
+                        <button
+                            type="button"
+                            class="product-action-button order-button"
+                            onclick="sendProductToWhatsApp(this, 'pesan')"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <circle cx="9" cy="20" r="1"></circle>
+                                <circle cx="19" cy="20" r="1"></circle>
+                                <path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.5h7.9a2 2 0 0 0 2-1.6L21 7H6"></path>
+                            </svg>
+
+                            PESAN PRODUK
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 02 MEJA MAKAN
+            ================================== -->
+
+            <div class="product-card" data-category="meja-makan">
+
+                <div
+                    class="product-image"
+                    onclick="openImage('images/meja-makan-2.jpg')"
+                >
+
+                    <span class="product-status available">
+                        AVAILABLE
+                    </span>
+
+                    <img
+                        src="images/meja-makan-2.jpg"
+                        alt="Detail Meja Makan Jati"
+                    >
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <div class="product-number">
+                        KOLEKSI 02
+                    </div>
+
+                    <h2>
+                        Meja Makan Jati Elegan
+                    </h2>
+
+                    <p>
+                        Detail furniture meja makan dengan karakter
+                        kayu jati dan pengerjaan khas Jepara.
+                    </p>
+
+                    <div class="product-tags">
+
+                        <span>
+                            Kayu Jati
+                        </span>
+
+                        <span>
+                            Handmade
+                        </span>
+
+                        <span>
+                            Jepara
+                        </span>
+
+                    </div>
+
+                    <div class="product-actions">
+
+                        <button
+                            type="button"
+                            class="product-action-button price-button"
+                            onclick="sendProductToWhatsApp(this, 'harga')"
+                        >
+                            HARGA
+                        </button>
+
+                        <button
+                            type="button"
+                            class="product-action-button order-button"
+                            onclick="sendProductToWhatsApp(this, 'pesan')"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <circle cx="9" cy="20" r="1"></circle>
+                                <circle cx="19" cy="20" r="1"></circle>
+                                <path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.5h7.9a2 2 0 0 0 2-1.6L21 7H6"></path>
+                            </svg>
+
+                            PESAN PRODUK
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 03 MEJA RIAS
+            ================================== -->
+
+            <div class="product-card" data-category="meja-rias">
+
+                <div
+                    class="product-image"
+                    onclick="openImage('images/meja-rias-1.jpg')"
+                >
+
+                    <span class="product-status available">
+                        AVAILABLE
+                    </span>
+
+                    <img
+                        src="images/meja-rias-1.jpg"
+                        alt="Meja Rias Jati"
+                    >
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <div class="product-number">
+                        KOLEKSI 03
+                    </div>
+
+                    <h2>
+                        Meja Rias Jati
+                    </h2>
+
+                    <p>
+                        Meja rias kayu jati dengan desain elegan
+                        untuk melengkapi kamar tidur.
+                    </p>
+
+                    <div class="product-tags">
+
+                        <span>
+                            Kayu Jati
+                        </span>
+
+                        <span>
+                            Handmade
+                        </span>
+
+                        <span>
+                            Finishing
+                        </span>
+
+                    </div>
+
+                    <div class="product-actions">
+
+                        <button
+                            type="button"
+                            class="product-action-button price-button"
+                            onclick="sendProductToWhatsApp(this, 'harga')"
+                        >
+                            HARGA
+                        </button>
+
+                        <button
+                            type="button"
+                            class="product-action-button order-button"
+                            onclick="sendProductToWhatsApp(this, 'pesan')"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <circle cx="9" cy="20" r="1"></circle>
+                                <circle cx="19" cy="20" r="1"></circle>
+                                <path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.5h7.9a2 2 0 0 0 2-1.6L21 7H6"></path>
+                            </svg>
+
+                            PESAN PRODUK
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 04 MEJA RIAS
+            ================================== -->
+
+            <div class="product-card" data-category="meja-rias">
+
+                <div
+                    class="product-image"
+                    onclick="openImage('images/meja-rias-2.jpg')"
+                >
+
+                    <span class="product-status available">
+                        AVAILABLE
+                    </span>
+
+                    <img
+                        src="images/meja-rias-2.jpg"
+                        alt="Detail Meja Rias Jati"
+                    >
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <div class="product-number">
+                        KOLEKSI 04
+                    </div>
+
+                    <h2>
+                        Meja Rias Ukiran Jepara
+                    </h2>
+
+                    <p>
+                        Detail meja rias dengan karakter kayu jati
+                        dan finishing khas furniture Jepara.
+                    </p>
+
+                    <div class="product-tags">
+
+                        <span>
+                            Ukiran
+                        </span>
+
+                        <span>
+                            Kayu Jati
+                        </span>
+
+                        <span>
+                            Jepara
+                        </span>
+
+                    </div>
+
+                    <div class="product-actions">
+
+                        <button
+                            type="button"
+                            class="product-action-button price-button"
+                            onclick="sendProductToWhatsApp(this, 'harga')"
+                        >
+                            HARGA
+                        </button>
+
+                        <button
+                            type="button"
+                            class="product-action-button order-button"
+                            onclick="sendProductToWhatsApp(this, 'pesan')"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <circle cx="9" cy="20" r="1"></circle>
+                                <circle cx="19" cy="20" r="1"></circle>
+                                <path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.5h7.9a2 2 0 0 0 2-1.6L21 7H6"></path>
+                            </svg>
+
+                            PESAN PRODUK
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 05 TEMPAT TIDUR
+            ================================== -->
+
+            <div class="product-card" data-category="tempat-tidur">
+
+                <div
+                    class="product-image"
+                    onclick="openImage('images/tempat-tidur-1.jpg')"
+                >
+
+                    <span class="product-status available">
+                        AVAILABLE
+                    </span>
+
+                    <img
+                        src="images/tempat-tidur-1.jpg"
+                        alt="Tempat Tidur Jati"
+                    >
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <div class="product-number">
+                        KOLEKSI 05
+                    </div>
+
+                    <h2>
+                        Tempat Tidur Jati
+                    </h2>
+
+                    <p>
+                        Tempat tidur kayu jati dengan desain kokoh
+                        dan elegan untuk kamar tidur.
+                    </p>
+
+                    <div class="product-tags">
+
+                        <span>
+                            Kayu Jati
+                        </span>
+
+                        <span>
+                            Bedroom
+                        </span>
+
+                        <span>
+                            Handmade
+                        </span>
+
+                    </div>
+
+                    <div class="product-actions">
+
+                        <button
+                            type="button"
+                            class="product-action-button price-button"
+                            onclick="sendProductToWhatsApp(this, 'harga')"
+                        >
+                            HARGA
+                        </button>
+
+                        <button
+                            type="button"
+                            class="product-action-button order-button"
+                            onclick="sendProductToWhatsApp(this, 'pesan')"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <circle cx="9" cy="20" r="1"></circle>
+                                <circle cx="19" cy="20" r="1"></circle>
+                                <path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.5h7.9a2 2 0 0 0 2-1.6L21 7H6"></path>
+                            </svg>
+
+                            PESAN PRODUK
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 06 KURSI TAMU
+            ================================== -->
+
+            <div class="product-card" data-category="kursi-tamu">
+
+                <div
+                    class="product-image"
+                    onclick="openImage('images/kursi-tamu-1.jpg')"
+                >
+
+                    <span class="product-status available">
+                        AVAILABLE
+                    </span>
+
+                    <img
+                        src="images/kursi-tamu-1.jpg"
+                        alt="Kursi Tamu Jati"
+                    >
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <div class="product-number">
+                        KOLEKSI 06
+                    </div>
+
+                    <h2>
+                        Kursi Tamu Jati
+                    </h2>
+
+                    <p>
+                        Kursi tamu kayu jati dengan karakter elegan
+                        dan pengerjaan khas Jepara.
+                    </p>
+
+                    <div class="product-tags">
+
+                        <span>
+                            Kayu Jati
+                        </span>
+
+                        <span>
+                            Ruang Tamu
+                        </span>
+
+                        <span>
+                            Ukiran
+                        </span>
+
+                    </div>
+
+                    <div class="product-actions">
+
+                        <button
+                            type="button"
+                            class="product-action-button price-button"
+                            onclick="sendProductToWhatsApp(this, 'harga')"
+                        >
+                            HARGA
+                        </button>
+
+                        <button
+                            type="button"
+                            class="product-action-button order-button"
+                            onclick="sendProductToWhatsApp(this, 'pesan')"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <circle cx="9" cy="20" r="1"></circle>
+                                <circle cx="19" cy="20" r="1"></circle>
+                                <path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.5h7.9a2 2 0 0 0 2-1.6L21 7H6"></path>
+                            </svg>
+
+                            PESAN PRODUK
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================
+                 07 KURSI TAMU
+            ================================== -->
+
+            <div class="product-card" data-category="kursi-tamu">
+
+                <div
+                    class="product-image"
+                    onclick="openImage('images/kursi-tamu-2.jpg')"
+                >
+
+                    <span class="product-status available">
+                        AVAILABLE
+                    </span>
+
+                    <img
+                        src="images/kursi-tamu-2.jpg"
+                        alt="Detail Kursi Tamu Jati"
+                    >
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <div class="product-number">
+                        KOLEKSI 07
+                    </div>
+
+                    <h2>
+                        Kursi Tamu Jati Elegan
+                    </h2>
+
+                    <p>
+                        Furniture ruang tamu dengan detail ukiran
+                        dan finishing kayu jati berkualitas.
+                    </p>
+
+                    <div class="product-tags">
+
+                        <span>
+                            Kayu Jati
+                        </span>
+
+                        <span>
+                            Handmade
+                        </span>
+
+                        <span>
+                            Finishing
+                        </span>
+
+                    </div>
+
+                    <div class="product-actions">
+
+                        <button
+                            type="button"
+                            class="product-action-button price-button"
+                            onclick="sendProductToWhatsApp(this, 'harga')"
+                        >
+                            HARGA
+                        </button>
+
+                        <button
+                            type="button"
+                            class="product-action-button order-button"
+                            onclick="sendProductToWhatsApp(this, 'pesan')"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <circle cx="9" cy="20" r="1"></circle>
+                                <circle cx="19" cy="20" r="1"></circle>
+                                <path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.5h7.9a2 2 0 0 0 2-1.6L21 7H6"></path>
+                            </svg>
+
+                            PESAN PRODUK
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="filter-empty" id="filterEmpty">
+                <strong>Produk belum tersedia</strong>
+                Belum ada produk pada kategori ini.
+            </div>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- =====================================
+         MODAL GAMBAR
+    ====================================== -->
+
+    <div
+        class="image-modal"
+        id="imageModal"
+    >
+
+
+        <!-- X -->
+
+        <button
+            class="modal-close"
+            id="modalClose"
+            type="button"
+            aria-label="Tutup gambar"
+        >
+            ×
+        </button>
+
+
+        <!-- GAMBAR -->
+
+        <div
+            class="modal-image-wrapper"
+            id="imageWrapper"
+        >
+
+            <img
+                id="modalImage"
+                class="modal-image"
+                src=""
+                alt="Preview Produk"
+            >
+
+        </div>
+
+
+        <!-- ZOOM -->
+
+        <div class="zoom-controls">
+
+            <button
+                type="button"
+                id="zoomOut"
+            >
+                −
+            </button>
+
+            <button
+                type="button"
+                id="zoomReset"
+                class="zoom-level"
+            >
+                100%
+            </button>
+
+            <button
+                type="button"
+                id="zoomIn"
+            >
+                +
+            </button>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================
+         JAVASCRIPT
+    ====================================== -->
+
+    <script>
+
+        const modal =
+            document.getElementById("imageModal");
+
+        const modalImage =
+            document.getElementById("modalImage");
+
+        const closeButton =
+            document.getElementById("modalClose");
+
+        const zoomInButton =
+            document.getElementById("zoomIn");
+
+        const zoomOutButton =
+            document.getElementById("zoomOut");
+
+        const zoomResetButton =
+            document.getElementById("zoomReset");
+
+        const imageWrapper =
+            document.getElementById("imageWrapper");
+
+
+        let zoom = 1;
+
+        let positionX = 0;
+
+        let positionY = 0;
+
+        let isDragging = false;
+
+        let startX = 0;
+
+        let startY = 0;
+
+
+
+        /* =========================
+           FILTER PRODUK
+        ========================== */
+
+        const filterButtons =
+            document.querySelectorAll(".filter-button");
+
+        const productCards =
+            document.querySelectorAll(".products-grid .product-card");
+
+        const filterEmpty =
+            document.getElementById("filterEmpty");
+
+
+        filterButtons.forEach(function(button) {
+
+            button.addEventListener("click", function() {
+
+                const selectedFilter =
+                    button.dataset.filter;
+
+                filterButtons.forEach(function(item) {
+                    item.classList.remove("active");
+                });
+
+                button.classList.add("active");
+
+                let visibleProducts = 0;
+
+                productCards.forEach(function(card) {
+
+                    const category =
+                        card.dataset.category;
+
+                    const statusElement =
+                        card.querySelector(".product-status");
+
+                    const status = statusElement
+                        ? statusElement.textContent.trim().toLowerCase()
+                        : "";
+
+                    let shouldShow = false;
+
+                    if (selectedFilter === "semua") {
+                        shouldShow = true;
+                    }
+                    else if (selectedFilter === "available") {
+                        shouldShow = status === "available";
+                    }
+                    else {
+                        shouldShow = category === selectedFilter;
+                    }
+
+                    if (shouldShow) {
+                        card.classList.remove("filter-hidden");
+                        visibleProducts++;
+                    }
+                    else {
+                        card.classList.add("filter-hidden");
+                    }
+
+                });
+
+                if (filterEmpty) {
+                    filterEmpty.style.display =
+                        visibleProducts === 0 ? "block" : "none";
+                }
+
+            });
+
+        });
+
+
+        /* =========================
+           PRODUK → WHATSAPP
+        ========================== */
+
+        function sendProductToWhatsApp(button, action) {
+
+            const productCard =
+                button.closest(".product-card");
+
+            const productName =
+                productCard.querySelector("h2")
+                    .textContent
+                    .trim();
+
+            const collection =
+                productCard.querySelector(".product-number")
+                    .textContent
+                    .trim();
+
+            const status =
+                productCard.querySelector(".product-status")
+                    .textContent
+                    .trim();
+
+            const nomorWhatsApp =
+                "6281244170370";
+
+            let message = "";
+
+            if (action === "harga") {
+
+                message = `Halo Rahmat Jepara, saya ingin menanyakan harga produk berikut:\n\n*${productName}*\n${collection}\nStatus: ${status}\n\nMohon informasi harga dan detail produknya. Terima kasih.`;
+
+            } else {
+
+                message = `Halo Rahmat Jepara, saya tertarik untuk memesan produk berikut:\n\n*${productName}*\n${collection}\nStatus: ${status}\n\nMohon informasi harga, ketersediaan, dan proses pemesanannya. Terima kasih.`;
+
+            }
+
+            const whatsappURL =
+                "https://wa.me/" +
+                nomorWhatsApp +
+                "?text=" +
+                encodeURIComponent(message);
+
+            window.open(
+                whatsappURL,
+                "_blank"
+            );
+
+        }
+
+
+        /* =========================
+           BUKA GAMBAR
+        ========================== */
+
+        function openImage(imageSource) {
+
+            modalImage.src = imageSource;
+
+            zoom = 1;
+
+            positionX = 0;
+
+            positionY = 0;
+
+            updateImage();
+
+            modal.classList.add("active");
+
+            document.body.style.overflow = "hidden";
+
+        }
+
+
+
+        /* =========================
+           UPDATE GAMBAR
+        ========================== */
+
+        function updateImage() {
+
+            modalImage.style.transform =
+                `translate(${positionX}px, ${positionY}px) scale(${zoom})`;
+
+            zoomResetButton.textContent =
+                Math.round(zoom * 100) + "%";
+
+        }
+
+
+
+        /* =========================
+           TUTUP
+        ========================== */
+
+        function closeModal() {
+
+            modal.classList.remove("active");
+
+            document.body.style.overflow = "";
+
+            modalImage.src = "";
+
+            zoom = 1;
+
+            positionX = 0;
+
+            positionY = 0;
+
+        }
+
+
+        closeButton.addEventListener(
+            "click",
+            function(event) {
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+                closeModal();
+
+            }
+        );
+
+
+
+        /* =========================
+           KLIK AREA HITAM
+        ========================== */
+
+        modal.addEventListener(
+            "click",
+            function(event) {
+
+                if (event.target === modal) {
+
+                    closeModal();
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================
+           ESC
+        ========================== */
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Escape") {
+
+                    closeModal();
+
+                }
+
+            }
+        );
+
+
+
+        /* =========================
+           ZOOM IN
+        ========================== */
+
+        zoomInButton.addEventListener(
+            "click",
+            function(event) {
+
+                event.stopPropagation();
+
+                zoom += 0.25;
+
+                if (zoom > 4) {
+
+                    zoom = 4;
+
+                }
+
+                updateImage();
+
+            }
+        );
+
+
+
+        /* =========================
+           ZOOM OUT
+        ========================== */
+
+        zoomOutButton.addEventListener(
+            "click",
+            function(event) {
+
+                event.stopPropagation();
+
+                zoom -= 0.25;
+
+                if (zoom < 1) {
+
+                    zoom = 1;
+
+                }
+
+                if (zoom === 1) {
+
+                    positionX = 0;
+
+                    positionY = 0;
+
+                }
+
+                updateImage();
+
+            }
+        );
+
+
+
+        /* =========================
+           RESET
+        ========================== */
+
+        zoomResetButton.addEventListener(
+            "click",
+            function(event) {
+
+                event.stopPropagation();
+
+                zoom = 1;
+
+                positionX = 0;
+
+                positionY = 0;
+
+                updateImage();
+
+            }
+        );
+
+
+
+        /* =========================
+           SCROLL UNTUK ZOOM
+        ========================== */
+
+        imageWrapper.addEventListener(
+            "wheel",
+            function(event) {
+
+                event.preventDefault();
+
+                event.stopPropagation();
+
+                if (event.deltaY < 0) {
+
+                    zoom += 0.15;
+
+                } else {
+
+                    zoom -= 0.15;
+
+                }
+
+                if (zoom > 4) {
+
+                    zoom = 4;
+
+                }
+
+                if (zoom < 1) {
+
+                    zoom = 1;
+
+                }
+
+                if (zoom === 1) {
+
+                    positionX = 0;
+
+                    positionY = 0;
+
+                }
+
+                updateImage();
+
+            },
+            {
+                passive: false
+            }
+        );
+
+
+
+        /* =========================
+           DRAG GAMBAR
+        ========================== */
+
+        imageWrapper.addEventListener(
+            "mousedown",
+            function(event) {
+
+                if (zoom <= 1) {
+
+                    return;
+
+                }
+
+                isDragging = true;
+
+                imageWrapper.classList.add("dragging");
+
+                startX =
+                    event.clientX - positionX;
+
+                startY =
+                    event.clientY - positionY;
+
+            }
+        );
+
+
+        document.addEventListener(
+            "mousemove",
+            function(event) {
+
+                if (!isDragging) {
+
+                    return;
+
+                }
+
+                positionX =
+                    event.clientX - startX;
+
+                positionY =
+                    event.clientY - startY;
+
+                updateImage();
+
+            }
+        );
+
+
+        document.addEventListener(
+            "mouseup",
+            function() {
+
+                isDragging = false;
+
+                imageWrapper.classList.remove(
+                    "dragging"
+                );
+
+            }
+        );
+
+
+
+        /* =========================
+           DOUBLE CLICK ZOOM
+        ========================== */
+
+        modalImage.addEventListener(
+            "dblclick",
+            function(event) {
+
+                event.stopPropagation();
+
+                if (zoom === 1) {
+
+                    zoom = 2;
+
+                } else {
+
+                    zoom = 1;
+
+                    positionX = 0;
+
+                    positionY = 0;
+
+                }
+
+                updateImage();
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

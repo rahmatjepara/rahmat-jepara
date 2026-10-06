@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Kontak - Rahmat Jepara</title>
+
+    <!-- CSS UTAMA -->
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- FONT AWESOME UNTUK ICON -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+
+    <style>
+
+        /* =========================================
+           HALAMAN KONTAK
+        ========================================= */
+
+        .contact-section {
+
+            min-height: calc(100vh - 140px);
+
+            padding: 80px 20px;
+
+            background: #f8f5f0;
+
+            display: flex;
+
+            align-items: center;
+
+        }
+
+
+        .contact-container {
+
+            width: 100%;
+
+            max-width: 1000px;
+
+            margin: 0 auto;
+
+        }
+
+
+        /* =========================================
+           HEADER
+        ========================================= */
+
+        .contact-header {
+
+            text-align: center;
+
+            margin-bottom: 45px;
+
+        }
+
+
+        .contact-header h1 {
+
+            font-size: 42px;
+
+            color: #3b2416;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .contact-header p {
+
+            font-size: 17px;
+
+            color: #666;
+
+            margin: 0;
+
+        }
+
+
+        /* =========================================
+           CARD
+        ========================================= */
+
+        .contact-card {
+
+            background: white;
+
+            border-radius: 18px;
+
+            padding: 45px;
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.08);
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 30px;
+
+        }
+
+
+        /* =========================================
+           CONTACT ITEM
+        ========================================= */
+
+        .contact-item {
+
+            background: #f8f5f0;
+
+            border-radius: 15px;
+
+            padding: 35px 25px;
+
+            text-align: center;
+
+            transition: 0.3s;
+
+        }
+
+
+        .contact-item:hover {
+
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 10px 25px rgba(0, 0, 0, 0.08);
+
+        }
+
+
+        /* =========================================
+           ICON
+        ========================================= */
+
+        .contact-icon {
+
+            width: 75px;
+
+            height: 75px;
+
+            margin: 0 auto 20px;
+
+            border-radius: 50%;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 34px;
+
+        }
+
+
+        /* ICON EMAIL */
+
+        .email-icon {
+
+            background: #eadfd4;
+
+            color: #3b2416;
+
+        }
+
+
+        /* ICON WHATSAPP */
+
+        .whatsapp-icon {
+
+            background: #dcf8e8;
+
+            color: #25D366;
+
+        }
+
+
+        .contact-item h2 {
+
+            font-size: 23px;
+
+            color: #3b2416;
+
+            margin-bottom: 12px;
+
+        }
+
+
+        .contact-item p {
+
+            color: #666;
+
+            font-size: 16px;
+
+            margin-bottom: 22px;
+
+            line-height: 1.6;
+
+            word-break: break-word;
+
+        }
+
+
+        /* =========================================
+           BUTTON
+        ========================================= */
+
+        .contact-link {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            gap: 9px;
+
+            padding: 12px 22px;
+
+            background: #3b2416;
+
+            color: white;
+
+            text-decoration: none;
+
+            border-radius: 8px;
+
+            font-weight: bold;
+
+            transition: 0.3s;
+
+        }
+
+
+        .contact-link:hover {
+
+            background: #5a3824;
+
+            transform: translateY(-2px);
+
+        }
+
+
+        /* =========================================
+           NOTE
+        ========================================= */
+
+        .contact-note {
+
+            text-align: center;
+
+            margin-top: 30px;
+
+            color: #777;
+
+            font-size: 15px;
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 700px) {
+
+            .contact-section {
+
+                padding: 55px 15px;
+
+            }
+
+
+            .contact-header h1 {
+
+                font-size: 32px;
+
+            }
+
+
+            .contact-card {
+
+                grid-template-columns: 1fr;
+
+                padding: 25px;
+
+            }
+
+
+            .contact-item {
+
+                padding: 30px 20px;
+
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =========================================
+         NAVBAR
+    ========================================= -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="index.html" class="logo brand-logo" aria-label="Rahmat Jepara - Home">
+                <img src="images/logo-rahmat-jepara.png" alt="Rahmat Jepara Furniture">
+            </a>
+
+            <nav class="nav-menu" id="navMenu">
+
+                <a href="index.html">Home</a>
+                <a href="produk.html">Produk</a>
+                <a href="customer-service.html">Customer Service</a>
+                <a href="kontak.html" class="active">Kontak</a>
+
+            </nav>
+
+            <button class="menu-toggle" id="menuToggle">
+                ☰
+            </button>
+
+        </div>
+
+    </header>
+
+
+
+    <!-- =========================================
+         KONTEN KONTAK
+    ========================================= -->
+
+    <main>
+
+
+        <section class="contact-section">
+
+
+            <div class="contact-container">
+
+
+                <!-- JUDUL -->
+
+                <div class="contact-header">
+
+                    <h1>
+                        Hubungi Kami
+                    </h1>
+
+                    <p>
+                        Silakan hubungi Rahmat Jepara melalui kontak di bawah ini.
+                    </p>
+
+                </div>
+
+
+
+                <!-- CONTACT CARD -->
+
+                <div class="contact-card">
+
+
+                    <!-- =================================
+                         EMAIL
+                    ================================= -->
+
+                    <div class="contact-item">
+
+
+                        <div class="contact-icon email-icon">
+
+                            <i class="fa-solid fa-envelope"></i>
+
+                        </div>
+
+
+                        <h2>
+                            Email
+                        </h2>
+
+
+                        <p>
+                            rahmatjepara07@gmail.com
+                        </p>
+
+
+                        <a
+                            href="mailto:rahmatjepara07@gmail.com"
+                            class="contact-link"
+                        >
+
+                            <i class="fa-solid fa-paper-plane"></i>
+
+                            KIRIM EMAIL
+
+                        </a>
+
+
+                    </div>
+
+
+
+                    <!-- =================================
+                         WHATSAPP
+                    ================================= -->
+
+                    <div class="contact-item">
+
+
+                        <div class="contact-icon whatsapp-icon">
+
+                            <i class="fa-brands fa-whatsapp"></i>
+
+                        </div>
+
+
+                        <h2>
+                            WhatsApp
+                        </h2>
+
+
+                        <p>
+                            081244170370
+                        </p>
+
+
+                        <a
+                            href="https://wa.me/6281244170370"
+                            target="_blank"
+                            class="contact-link"
+                        >
+
+                            <i class="fa-brands fa-whatsapp"></i>
+
+                            CHAT WHATSAPP
+
+                        </a>
+
+
+                    </div>
+
+
+                </div>
+
+
+
+                <!-- CATATAN -->
+
+                <div class="contact-note">
+
+                    <p>
+                        Rahmat Jepara siap membantu kebutuhan furniture Jepara Anda.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <!-- =========================================
+         FOOTER
+    ========================================= -->
+
+    <footer class="footer">
+
+
+        <div class="footer-container">
+
+
+            <!-- BRAND -->
+
+            <div class="footer-brand">
+
+                <h3>
+                    RAHMAT<span>JEPARA</span>
+                </h3>
+
+                <p>
+                    Furniture Jepara berkualitas dengan
+                    bahan kayu jati pilihan.
+                </p>
+
+            </div>
+
+
+
+            <!-- MENU -->
+
+            <div class="footer-links">
+
+                <h4>
+                    MENU
+                </h4>
+
+
+                <a href="index.html">
+                    Home
+                </a>
+
+
+                <a href="produk.html">
+                    Produk
+                </a>
+
+
+                <a href="customer-service.html">
+                    Customer Service
+                </a>
+
+
+                <a href="kontak.html">
+                    Kontak
+                </a>
+
+            </div>
+
+
+
+            <!-- CONTACT -->
+
+            <div class="footer-contact">
+
+                <h4>
+                    HUBUNGI KAMI
+                </h4>
+
+
+                <p>
+                    Email:
+                    rahmatjepara07@gmail.com
+                </p>
+
+
+                <p>
+                    WhatsApp:
+                    081244170370
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Rahmat Jepara. All Rights Reserved.
+            </p>
+
+        </div>
+
+
+    </footer>
+
+
+
+    <!-- =========================================
+         JAVASCRIPT
+    ========================================= -->
+
+    <script>
+
+        const menuToggle =
+            document.getElementById("menuToggle");
+
+        const navMenu =
+            document.getElementById("navMenu");
+
+
+        menuToggle.addEventListener(
+            "click",
+            function () {
+
+                navMenu.classList.toggle("active");
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>

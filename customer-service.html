@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Customer Service - Rahmat Jepara</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* ==============================
+           CUSTOMER SERVICE PAGE
+        ============================== */
+
+        .cs-section {
+            padding: 80px 20px;
+            background: #f8f5f0;
+        }
+
+        .cs-container {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .cs-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .cs-header h1 {
+            font-size: 42px;
+            color: #3b2416;
+            margin-bottom: 15px;
+        }
+
+        .cs-header p {
+            font-size: 17px;
+            color: #666;
+        }
+
+        .cs-content {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 35px;
+            align-items: stretch;
+        }
+
+        /* ==============================
+           INFO PANEL
+        ============================== */
+
+        .cs-info {
+            background: #3b2416;
+            color: white;
+            padding: 40px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .cs-info h2 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .cs-info > p {
+            color: #e8ddd3;
+            line-height: 1.7;
+            margin-bottom: 30px;
+        }
+
+        .cs-info-item {
+            margin-bottom: 25px;
+        }
+
+        .cs-info-item strong {
+            display: block;
+            font-size: 15px;
+            margin-bottom: 6px;
+            color: #d9b38c;
+        }
+
+        .cs-info-item span {
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .cs-wa-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 14px 22px;
+            background: #25d366;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .cs-wa-button:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+
+        /* ==============================
+           FORM
+        ============================== */
+
+        .cs-form {
+            background: white;
+            padding: 40px;
+            border-radius: 18px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .cs-form h2 {
+            font-size: 28px;
+            color: #3b2416;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #3b2416;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 13px 15px;
+            border: 1px solid #ddd;
+            border-radius: 9px;
+            font-family: inherit;
+            font-size: 15px;
+            box-sizing: border-box;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: #8b5e3c;
+            box-shadow: 0 0 0 3px rgba(139, 94, 60, 0.1);
+        }
+
+        .form-group textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            width: 100%;
+            border: none;
+            padding: 15px 20px;
+            background: #3b2416;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .submit-button:hover {
+            background: #5a3824;
+            transform: translateY(-2px);
+        }
+
+        /* ==============================
+           MOBILE
+        ============================== */
+
+        @media (max-width: 800px) {
+            .cs-section {
+                padding: 55px 15px;
+            }
+
+            .cs-header h1 {
+                font-size: 32px;
+            }
+
+            .cs-content {
+                grid-template-columns: 1fr;
+            }
+
+            .cs-info,
+            .cs-form {
+                padding: 28px 22px;
+            }
+
+            .cs-info h2,
+            .cs-form h2 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ==============================
+         NAVBAR
+    ============================== -->
+
+    <header class="navbar">
+
+        <div class="nav-container">
+
+            <a href="index.html" class="logo brand-logo" aria-label="Rahmat Jepara - Home">
+                <img src="images/logo-rahmat-jepara.png" alt="Rahmat Jepara Furniture">
+            </a>
+
+            <nav class="nav-menu" id="navMenu">
+
+                <a href="index.html">Home</a>
+                <a href="produk.html">Produk</a>
+                <a href="customer-service.html" class="active">Customer Service</a>
+                <a href="kontak.html">Kontak</a>
+
+            </nav>
+
+            <button class="menu-toggle" id="menuToggle">
+                ☰
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <!-- ==============================
+         CUSTOMER SERVICE
+    ============================== -->
+
+    <main>
+
+        <section class="cs-section">
+
+            <div class="cs-container">
+
+                <div class="cs-header">
+
+                    <h1>Customer Service</h1>
+
+                    <p>
+                        Kami siap membantu kebutuhan furniture Jepara Anda.
+                    </p>
+
+                </div>
+
+
+                <div class="cs-content">
+
+                    <!-- ==============================
+                         INFO
+                    ============================== -->
+
+                    <div class="cs-info">
+
+                        <h2>Kami siap membantu</h2>
+
+                        <p>
+                            Silakan isi formulir di samping untuk menyampaikan
+                            pertanyaan, pemesanan, keluhan, atau kebutuhan
+                            lainnya. Setelah dikirim, Anda akan diarahkan
+                            langsung ke WhatsApp Rahmat Jepara.
+                        </p>
+
+
+                        <div class="cs-info-item">
+
+                            <strong>WHATSAPP</strong>
+
+                            <span>
+                                +62 812-4417-0370
+                            </span>
+
+                        </div>
+
+
+                        <div class="cs-info-item">
+
+                            <strong>LAYANAN</strong>
+
+                            <span>
+                                Pertanyaan produk<br>
+                                Pemesanan furniture<br>
+                                Informasi pengiriman<br>
+                                Keluhan dan perbaikan
+                            </span>
+
+                        </div>
+
+                        <a
+                            href="https://wa.me/6281244170370"
+                            target="_blank"
+                            class="cs-wa-button"
+                        >
+                            CHAT VIA WHATSAPP
+                        </a>
+
+                    </div>
+
+
+                    <!-- ==============================
+                         FORM
+                    ============================== -->
+
+                    <div class="cs-form">
+
+                        <h2>Hubungi Kami</h2>
+
+                        <form id="customerServiceForm">
+
+                            <!-- Nama -->
+
+                            <div class="form-group">
+
+                                <label for="nama">
+                                    NAMA LENGKAP
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="nama"
+                                    name="nama"
+                                    placeholder="Masukkan nama Anda"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <!-- WhatsApp -->
+
+                            <div class="form-group">
+
+                                <label for="whatsapp">
+                                    NOMOR WHATSAPP
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="whatsapp"
+                                    name="whatsapp"
+                                    placeholder="Contoh: 081234567890"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <!-- Produk -->
+
+                            <div class="form-group">
+
+                                <label for="produk">
+                                    PRODUK
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="produk"
+                                    name="produk"
+                                    placeholder="Contoh: Meja makan jati"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <!-- Jenis kebutuhan -->
+
+                            <div class="form-group">
+
+                                <label for="jenis">
+                                    KEBUTUHAN
+                                </label>
+
+                                <select
+                                    id="jenis"
+                                    name="jenis"
+                                    required
+                                >
+
+                                    <option value="">
+                                        Pilih kebutuhan
+                                    </option>
+
+                                    <option value="Pertanyaan Produk">
+                                        Pertanyaan Produk
+                                    </option>
+
+                                    <option value="Pemesanan">
+                                        Pemesanan
+                                    </option>
+
+                                    <option value="Keluhan Produk">
+                                        Keluhan Produk
+                                    </option>
+
+                                    <option value="Permintaan Perbaikan">
+                                        Permintaan Perbaikan
+                                    </option>
+
+                                    <option value="Informasi Pengiriman">
+                                        Informasi Pengiriman
+                                    </option>
+
+                                    <option value="Lainnya">
+                                        Lainnya
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <!-- Pesan -->
+
+                            <div class="form-group">
+
+                                <label for="pesan">
+                                    DESKRIPSI / KELUHAN
+                                </label>
+
+                                <textarea
+                                    id="pesan"
+                                    name="pesan"
+                                    placeholder="Tuliskan pertanyaan, kebutuhan, atau keluhan Anda..."
+                                    required
+                                ></textarea>
+
+                            </div>
+
+
+                            <!-- Submit -->
+
+                            <button
+                                type="submit"
+                                class="submit-button"
+                            >
+                                KIRIM KE WHATSAPP
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- ==============================
+         FOOTER
+    ============================== -->
+
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-brand">
+
+                <h3>
+                    RAHMAT<span>JEPARA</span>
+                </h3>
+
+                <p>
+                    Furniture Jepara berkualitas dengan
+                    bahan kayu jati pilihan.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h4>MENU</h4>
+
+                <a href="index.html">Home</a>
+
+                <a href="produk.html">Produk</a>
+
+                <a href="customer-service.html">
+                    Customer Service
+                </a>
+
+                <a href="kontak.html">Kontak</a>
+
+            </div>
+
+
+            <div class="footer-contact">
+
+                <h4>HUBUNGI KAMI</h4>
+
+                <p>
+                    WhatsApp:
+                    +62 812-4417-0370
+                </p>
+
+                <a
+                    href="https://wa.me/6281244170370"
+                    target="_blank"
+                >
+                    Chat WhatsApp
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Rahmat Jepara. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </footer>
+
+
+    <!-- ==============================
+         JAVASCRIPT
+    ============================== -->
+
+    <script>
+
+        /* ==============================
+           MOBILE MENU
+        ============================== */
+
+        const menuToggle = document.getElementById("menuToggle");
+        const navMenu = document.getElementById("navMenu");
+
+        menuToggle.addEventListener("click", function () {
+
+            navMenu.classList.toggle("active");
+
+        });
+
+
+        /* ==============================
+           CUSTOMER SERVICE → WHATSAPP
+        ============================== */
+
+        const form = document.getElementById("customerServiceForm");
+
+        form.addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+
+            const nama =
+                document.getElementById("nama").value.trim();
+
+            const whatsapp =
+                document.getElementById("whatsapp").value.trim();
+
+            const produk =
+                document.getElementById("produk").value.trim();
+
+            const jenis =
+                document.getElementById("jenis").value;
+
+            const pesan =
+                document.getElementById("pesan").value.trim();
+
+
+            const nomorWhatsApp = "6281244170370";
+
+
+            const message = `Halo Rahmat Jepara, saya ingin menghubungi Customer Service.
+
+*DATA CUSTOMER*
+
+Nama: ${nama}
+WhatsApp: ${whatsapp}
+
+*INFORMASI PRODUK*
+
+Produk: ${produk}
+Kebutuhan: ${jenis}
+
+*DESKRIPSI / KELUHAN*
+
+${pesan}
+
+*LAMPIRKAN FOTO SECARA MANUAL DI WHATSAPP RAHMATJEPARA (OPSIONAL)*
+
+Terima kasih.`;
+
+
+            const whatsappURL =
+                "https://wa.me/" +
+                nomorWhatsApp +
+                "?text=" +
+                encodeURIComponent(message);
+
+
+            window.open(whatsappURL, "_blank");
+
+        });
+
+    </script>
+
+</body>
+</html>

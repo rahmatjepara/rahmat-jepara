@@ -79,6 +79,9 @@
         .products-page .product-card {
             background: #eee6d8;
             overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
 
@@ -153,6 +156,9 @@
         .products-page .product-info {
             padding: 28px;
             background: #f5f0e7;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
 
 
@@ -210,6 +216,20 @@
             font-size: 11px;
         }
 
+        .product-tags {
+            margin-bottom: 22px;
+        }
+
+        /* Perbaikan visual foto tertentu tanpa mengubah file asli */
+        .products-page .product-image img.straighten-photo {
+            transform: rotate(0.6deg) scale(1.045);
+            transform-origin: center center;
+        }
+
+        .products-page .product-image:hover img.straighten-photo {
+            transform: rotate(0.6deg) scale(1.075);
+        }
+
 
 
         /* =====================================
@@ -220,7 +240,7 @@
             display: grid;
             grid-template-columns: 0.85fr 1.4fr;
             gap: 10px;
-            margin-top: 22px;
+            margin-top: auto;
             padding-top: 20px;
             border-top: 1px solid #e1d7c7;
         }
@@ -565,6 +585,765 @@
             }
         }
 
+    
+
+        /* =====================================
+           MOBILE FILTER FINAL FIX
+           Tetap satu baris dan bisa digeser
+        ===================================== */
+
+        @media (max-width: 600px) {
+
+            .product-filter {
+                display: flex;
+                flex-wrap: nowrap;
+                gap: 8px;
+
+                overflow-x: auto;
+                overflow-y: hidden;
+
+                margin: 0 0 30px;
+                padding: 0 0 16px;
+
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+
+            .product-filter::-webkit-scrollbar {
+                display: none;
+            }
+
+            .filter-button {
+                flex: 0 0 auto;
+                min-width: max-content;
+
+                padding: 11px 15px;
+                font-size: 9px;
+                white-space: nowrap;
+            }
+
+        }
+
+
+        /* =====================================
+           SEARCH PRODUK - MASCOT PENCARIAN HIDUP
+           Desktop : judul selalu terlihat + karakter interaktif
+           Mobile  : tap mascot membuka search full-width
+        ===================================== */
+
+        .product-search-launcher-wrap {
+            position: absolute;
+            top: 18px;
+            right: 34px;
+            z-index: 10020;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .search-callout {
+            position: relative;
+            width: 230px;
+            padding: 11px 15px;
+            background: rgba(255, 250, 241, 0.98);
+            border: 1px solid rgba(155, 112, 72, 0.48);
+            box-shadow: 0 10px 26px rgba(54, 34, 22, 0.10);
+            color: #2d2018;
+            text-align: left;
+            pointer-events: none;
+        }
+
+        .search-callout::after {
+            content: "";
+            position: absolute;
+            top: 50%;
+            right: -7px;
+            width: 12px;
+            height: 12px;
+            background: #fffaf1;
+            border-top: 1px solid rgba(155, 112, 72, 0.48);
+            border-right: 1px solid rgba(155, 112, 72, 0.48);
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        .search-callout strong,
+        .search-callout small {
+            display: block;
+        }
+
+        .search-callout strong {
+            font-family: Georgia, "Times New Roman", serif;
+            font-size: 15px;
+            line-height: 1.25;
+            font-weight: 500;
+        }
+
+        .search-callout small {
+            margin-top: 3px;
+            color: #7d6a59;
+            font-size: 11px;
+        }
+
+        .product-search-launcher {
+            position: relative;
+            width: 98px;
+            height: 104px;
+            border: 0;
+            padding: 0;
+            background: transparent;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            outline: none;
+        }
+
+        .search-mascot-stage {
+            position: relative;
+            width: 96px;
+            height: 102px;
+            display: grid;
+            place-items: center;
+            transform-origin: 50% 92%;
+            transition: transform 0.18s ease, filter 0.22s ease;
+            filter: drop-shadow(0 7px 9px rgba(64, 42, 24, 0.16));
+        }
+
+        .search-mascot-svg {
+            width: 100%;
+            height: 100%;
+            overflow: visible;
+            display: block;
+        }
+
+        /* Bagian mascot punya animasi terpisah supaya terasa hidup */
+        #mascotBody {
+            transform-box: fill-box;
+            transform-origin: 50% 90%;
+            animation: mascotBreath 3.2s ease-in-out infinite;
+        }
+
+        #mascotCrown {
+            transform-box: fill-box;
+            transform-origin: 50% 85%;
+            animation: crownSway 4.6s ease-in-out infinite;
+        }
+
+        #mascotLeftArm {
+            transform-box: fill-box;
+            transform-origin: 75% 55%;
+            animation: leftArmHello 5.2s ease-in-out infinite;
+        }
+
+        #mascotSearchArm {
+            transform-box: fill-box;
+            transform-origin: 22% 70%;
+            animation: searchArmIdle 3.8s ease-in-out infinite;
+        }
+
+        #mascotMagnifier {
+            transform-box: fill-box;
+            transform-origin: 50% 70%;
+            animation: magnifierScan 3.8s ease-in-out infinite;
+        }
+
+        .mascot-eye-lid {
+            transform-box: fill-box;
+            transform-origin: 50% 0%;
+            animation: mascotBlink 5.4s infinite;
+        }
+
+        .mascot-pupil-svg {
+            transition: transform 0.09s linear;
+        }
+
+        .product-search-launcher:hover .search-mascot-stage,
+        .product-search-launcher:focus-visible .search-mascot-stage {
+            transform: translateY(-3px) scale(1.04);
+            filter: drop-shadow(0 11px 13px rgba(64, 42, 24, 0.22));
+        }
+
+        .product-search-launcher.searching #mascotSearchArm {
+            animation: mascotSearchArmAction 0.72s cubic-bezier(.2,.8,.2,1);
+        }
+
+        .product-search-launcher.searching #mascotMagnifier {
+            animation: mascotMagnifierAction 0.72s cubic-bezier(.2,.8,.2,1);
+        }
+
+        .product-search-launcher.searching #mascotMouth {
+            animation: mascotSmilePop 0.72s ease;
+        }
+
+        .product-search-panel {
+            position: fixed;
+            top: 150px;
+            left: 50%;
+            z-index: 10015;
+            width: min(1040px, calc(100% - 44px));
+            transform: translate(-50%, -14px);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+        }
+
+        .product-search-panel.open {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translate(-50%, 0);
+        }
+
+        .product-search-inner {
+            display: grid;
+            grid-template-columns: 36px 1fr 38px auto;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 12px 11px 14px;
+            background: rgba(255, 250, 241, 0.98);
+            border: 1px solid rgba(155, 112, 72, 0.42);
+            box-shadow: 0 18px 45px rgba(45, 28, 17, 0.15);
+            backdrop-filter: blur(10px);
+        }
+
+        .product-search-icon {
+            font-family: Georgia, serif;
+            color: #4a2d1c;
+            font-size: 31px;
+            line-height: 1;
+            transform: rotate(-18deg);
+        }
+
+        #productSearchInput {
+            width: 100%;
+            height: 46px;
+            border: 0;
+            outline: 0;
+            background: transparent;
+            color: #281a12;
+            font-size: 13px;
+        }
+
+        #productSearchInput::placeholder { color: #95877a; }
+
+        .product-search-clear,
+        .product-search-close {
+            border: 0;
+            cursor: pointer;
+            transition: 0.22s ease;
+        }
+
+        .product-search-clear {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: #e9ddcd;
+            color: #5b4535;
+            font-size: 21px;
+            line-height: 1;
+        }
+
+        .product-search-clear:hover { background: #d9c6ad; }
+
+        .product-search-close {
+            height: 34px;
+            padding: 0 12px;
+            background: transparent;
+            color: #715844;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .product-search-close:hover { color: #281a12; }
+
+        @media (max-width: 980px) {
+            .search-callout { width: 195px; }
+            .product-search-launcher-wrap { right: 18px; }
+            .product-search-launcher { width: 84px; height: 90px; }
+            .search-mascot-stage { width: 82px; height: 88px; }
+        }
+
+        @media (max-width: 768px) {
+            .products-page { padding-top: 155px; }
+
+            .product-search-launcher-wrap {
+                top: 92px;
+                right: 14px;
+                left: auto;
+                gap: 7px;
+                align-items: center;
+            }
+
+            .search-callout {
+                width: 160px;
+                padding: 8px 10px;
+                text-align: center;
+            }
+
+            .search-callout strong { font-size: 11px; }
+            .search-callout small { font-size: 9px; }
+
+            .product-search-launcher {
+                width: 66px;
+                height: 72px;
+            }
+
+            .search-mascot-stage {
+                width: 64px;
+                height: 70px;
+            }
+
+            .product-search-panel {
+                top: 166px;
+                width: calc(100% - 22px);
+            }
+
+            .product-search-inner {
+                grid-template-columns: 27px 1fr 32px;
+                gap: 5px;
+                padding: 8px 8px 8px 10px;
+            }
+
+            .product-search-close { display: none; }
+            .product-search-icon { font-size: 24px; }
+            #productSearchInput { height: 42px; font-size: 12px; }
+        }
+
+        @media (max-width: 420px) {
+            .products-page { padding-top: 150px; }
+            .product-search-launcher-wrap { top: 88px; right: 9px; }
+            .search-callout { width: 145px; }
+            .search-callout strong { font-size: 10px; }
+            .search-callout small { font-size: 8px; }
+            .product-search-launcher { width: 58px; height: 64px; }
+            .search-mascot-stage { width: 57px; height: 62px; }
+            .product-search-panel { top: 158px; }
+        }
+
+        @keyframes mascotBreath {
+            0%, 100% { transform: scaleY(1) translateY(0); }
+            50% { transform: scaleY(1.018) translateY(-1px); }
+        }
+
+        @keyframes crownSway {
+            0%, 100% { transform: rotate(-1deg); }
+            50% { transform: rotate(1.8deg); }
+        }
+
+        @keyframes leftArmHello {
+            0%, 76%, 100% { transform: rotate(0deg); }
+            82% { transform: rotate(-8deg); }
+            88% { transform: rotate(5deg); }
+            94% { transform: rotate(-3deg); }
+        }
+
+        @keyframes searchArmIdle {
+            0%,100% { transform: rotate(0deg); }
+            50% { transform: rotate(-3deg); }
+        }
+
+        @keyframes magnifierScan {
+            0%,100% { transform: translate(0,0) rotate(0deg); }
+            50% { transform: translate(-1px,-2px) rotate(3deg); }
+        }
+
+        @keyframes mascotBlink {
+            0%, 44%, 46%, 100% { transform: scaleY(1); }
+            45% { transform: scaleY(0.08); }
+        }
+
+        @keyframes mascotSearchArmAction {
+            0%,100% { transform: rotate(0deg); }
+            45% { transform: rotate(-16deg) translateY(-2px); }
+            72% { transform: rotate(-7deg); }
+        }
+
+        @keyframes mascotMagnifierAction {
+            0%,100% { transform: translate(0,0) scale(1) rotate(0deg); }
+            45% { transform: translate(-5px,-5px) scale(1.12) rotate(-8deg); }
+            72% { transform: translate(-2px,-2px) scale(1.05) rotate(3deg); }
+        }
+
+        @keyframes mascotSmilePop {
+            0%,100% { transform: scale(1); }
+            45% { transform: scale(1.16); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            #mascotBody,
+            #mascotCrown,
+            #mascotLeftArm,
+            #mascotSearchArm,
+            #mascotMagnifier,
+            .mascot-eye-lid {
+                animation: none !important;
+            }
+        }
+
+    
+        /* =====================================
+           GALERI PRODUK MULTI-FOTO
+           Batch 01: Koleksi 01–04
+        ===================================== */
+
+        .gallery-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 54px;
+            height: 72px;
+            border: 1px solid rgba(255,255,255,0.35);
+            border-radius: 6px;
+            background: rgba(255,255,255,0.94);
+            color: #211b17;
+            font-size: 38px;
+            line-height: 1;
+            cursor: pointer;
+            z-index: 100005;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+        }
+
+        .gallery-nav.visible {
+            display: flex;
+        }
+
+        .gallery-prev {
+            left: 24px;
+        }
+
+        .gallery-next {
+            right: 24px;
+        }
+
+        .gallery-counter {
+            position: fixed;
+            top: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100005;
+            padding: 9px 14px;
+            border-radius: 999px;
+            background: rgba(255,255,255,0.94);
+            color: #211b17;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 1.2px;
+            display: none;
+        }
+
+        .gallery-counter.visible {
+            display: block;
+        }
+
+        .gallery-thumbnails {
+            position: fixed;
+            left: 50%;
+            bottom: 92px;
+            transform: translateX(-50%);
+            z-index: 100005;
+            max-width: min(720px, 88vw);
+            display: none;
+            gap: 8px;
+            padding: 8px;
+            overflow-x: auto;
+            background: rgba(30,23,18,0.72);
+            border-radius: 8px;
+            backdrop-filter: blur(8px);
+            scrollbar-width: thin;
+        }
+
+        .gallery-thumbnails.visible {
+            display: flex;
+        }
+
+        .gallery-thumb {
+            flex: 0 0 68px;
+            width: 68px;
+            height: 68px;
+            padding: 0;
+            border: 2px solid transparent;
+            border-radius: 4px;
+            overflow: hidden;
+            background: #fff;
+            cursor: pointer;
+            opacity: 0.68;
+            transition: 0.2s ease;
+        }
+
+        .gallery-thumb.active {
+            opacity: 1;
+            border-color: #b88755;
+            transform: translateY(-2px);
+        }
+
+        .gallery-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        @media (max-width: 600px) {
+            .gallery-nav {
+                width: 42px;
+                height: 58px;
+                font-size: 30px;
+                top: 47%;
+            }
+
+            .gallery-prev {
+                left: 8px;
+            }
+
+            .gallery-next {
+                right: 8px;
+            }
+
+            .gallery-counter {
+                top: 18px;
+                font-size: 10px;
+            }
+
+            .gallery-thumbnails {
+                bottom: 84px;
+                max-width: 84vw;
+            }
+
+            .gallery-thumb {
+                flex-basis: 58px;
+                width: 58px;
+                height: 58px;
+            }
+
+            .zoom-controls {
+                bottom: 18px;
+            }
+        }
+
+    
+        /* =========================================================
+           FINAL MOBILE-SAFE OVERRIDE
+           Menjaga gallery, zoom, thumbnail, dan tombol tetap rapi
+           tanpa mengubah tampilan desktop.
+        ========================================================= */
+
+        .image-modal,
+        .image-modal * {
+            box-sizing: border-box;
+        }
+
+        .modal-image-wrapper {
+            touch-action: none;
+        }
+
+        @supports (height: 100dvh) {
+            .image-modal {
+                height: 100dvh;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            .image-modal {
+                width: 100vw;
+                min-height: 100vh;
+                padding:
+                    calc(58px + env(safe-area-inset-top))
+                    0
+                    calc(142px + env(safe-area-inset-bottom));
+            }
+
+            .modal-image-wrapper {
+                width: 100vw;
+                height: 100%;
+                max-height: none;
+                padding: 0 48px;
+                overflow: hidden;
+            }
+
+            .modal-image {
+                max-width: 100%;
+                max-height: calc(
+                    100dvh
+                    - 220px
+                    - env(safe-area-inset-top)
+                    - env(safe-area-inset-bottom)
+                );
+                width: auto;
+                height: auto;
+                object-fit: contain;
+            }
+
+            .modal-close {
+                top: calc(10px + env(safe-area-inset-top));
+                right: 10px;
+                width: 44px;
+                height: 44px;
+                font-size: 27px;
+            }
+
+            .gallery-counter {
+                top: calc(12px + env(safe-area-inset-top));
+                padding: 8px 12px;
+                font-size: 10px;
+                white-space: nowrap;
+            }
+
+            .gallery-nav {
+                top: 48%;
+                width: 38px;
+                height: 54px;
+                border-radius: 7px;
+                font-size: 28px;
+                background: rgba(255,255,255,.90);
+            }
+
+            .gallery-prev {
+                left: 5px;
+            }
+
+            .gallery-next {
+                right: 5px;
+            }
+
+            .gallery-thumbnails {
+                bottom: calc(72px + env(safe-area-inset-bottom));
+                width: auto;
+                max-width: calc(100vw - 24px);
+                padding: 6px;
+                gap: 6px;
+                border-radius: 7px;
+                scrollbar-width: none;
+            }
+
+            .gallery-thumbnails::-webkit-scrollbar {
+                display: none;
+            }
+
+            .gallery-thumb {
+                flex: 0 0 54px;
+                width: 54px;
+                height: 54px;
+            }
+
+            .zoom-controls {
+                bottom: calc(12px + env(safe-area-inset-bottom));
+                gap: 6px;
+            }
+
+            .zoom-controls button {
+                width: 44px;
+                height: 44px;
+                font-size: 19px;
+            }
+
+            .zoom-level {
+                width: 66px !important;
+                font-size: 11px !important;
+            }
+
+            .products-page {
+                overflow-x: hidden;
+            }
+
+            .products-page .product-card,
+            .products-page .product-image,
+            .products-page .product-info {
+                min-width: 0;
+                max-width: 100%;
+            }
+        }
+
+        /* HP landscape */
+        @media (max-width: 900px) and (orientation: landscape) {
+
+            .image-modal {
+                padding:
+                    calc(8px + env(safe-area-inset-top))
+                    0
+                    calc(8px + env(safe-area-inset-bottom));
+            }
+
+            .modal-image-wrapper {
+                width: 100vw;
+                height: 100dvh;
+                padding: 8px 56px;
+            }
+
+            .modal-image {
+                max-height: calc(
+                    100dvh
+                    - 24px
+                    - env(safe-area-inset-top)
+                    - env(safe-area-inset-bottom)
+                );
+            }
+
+            .gallery-thumbnails {
+                left: 10px;
+                bottom: calc(10px + env(safe-area-inset-bottom));
+                transform: none;
+                max-width: calc(100vw - 250px);
+            }
+
+            .gallery-thumb {
+                flex-basis: 46px;
+                width: 46px;
+                height: 46px;
+            }
+
+            .zoom-controls {
+                left: auto;
+                right: 10px;
+                bottom: calc(10px + env(safe-area-inset-bottom));
+                transform: none;
+            }
+
+            .zoom-controls button {
+                width: 42px;
+                height: 42px;
+            }
+
+            .modal-close {
+                top: calc(8px + env(safe-area-inset-top));
+                right: 8px;
+            }
+
+            .gallery-counter {
+                top: calc(8px + env(safe-area-inset-top));
+            }
+        }
+
+    
+        /* =========================================
+           MOBILE PINCH ZOOM + PAN
+        ========================================= */
+
+        .modal-image-wrapper {
+            touch-action: none;
+            overscroll-behavior: contain;
+        }
+
+        .modal-image {
+            transform-origin: center center;
+            will-change: transform;
+        }
+
+        @media (max-width: 600px) {
+            .modal-image-wrapper {
+                cursor: default;
+            }
+
+            .modal-image {
+                transition: none !important;
+            }
+        }
+
+
     </style>
 
 </head>
@@ -604,6 +1383,71 @@
     </header>
 
 
+    <!-- =====================================
+         SEARCH PRODUK - MASCOT PENCARIAN HIDUP
+         Judul selalu terlihat. Desktop mengikuti cursor.
+         Mobile cukup tap mascot untuk membuka search.
+    ====================================== -->
+
+    <div class="product-search-launcher-wrap" id="productSearchLauncherWrap">
+
+        <div class="search-callout" aria-hidden="true">
+            <strong>Cari produk favoritmu di sini</strong>
+            <small>Contoh: tempat tidur jati</small>
+        </div>
+
+        <button
+            type="button"
+            class="product-search-launcher"
+            id="productSearchLauncher"
+            aria-label="Buka pencarian produk"
+            aria-expanded="false"
+            aria-controls="productSearchPanel"
+        >
+            <span class="search-mascot-stage" id="searchMascotStage" aria-hidden="true">
+                <img
+                    src="images/search-tree-mascot.svg"
+                    alt=""
+                    class="search-mascot-svg"
+                    draggable="false"
+                >
+            </span>
+        </button>
+
+    </div>
+
+    <section class="product-search-panel" id="productSearchPanel" aria-hidden="true">
+        <div class="product-search-inner">
+            <span class="product-search-icon" aria-hidden="true">⌕</span>
+
+            <input
+                type="search"
+                id="productSearchInput"
+                autocomplete="off"
+                placeholder="Ketik nama produk... contoh: meja makan, lemari, kursi tamu"
+                aria-label="Cari produk Rahmat Jepara"
+            >
+
+            <button
+                type="button"
+                class="product-search-clear"
+                id="productSearchClear"
+                aria-label="Hapus pencarian"
+                title="Hapus pencarian"
+            >×</button>
+
+            <button
+                type="button"
+                class="product-search-close"
+                id="productSearchClose"
+                aria-label="Tutup pencarian"
+                title="Tutup pencarian"
+            >Tutup</button>
+        </div>
+    </section>
+
+
+
 
     <!-- =====================================
          PRODUK
@@ -640,20 +1484,20 @@
                 SEMUA
             </button>
 
-            <button type="button" class="filter-button" data-filter="meja-makan">
-                MEJA MAKAN
+            <button type="button" class="filter-button" data-filter="ruang-tamu">
+                RUANG TAMU
             </button>
 
-            <button type="button" class="filter-button" data-filter="meja-rias">
-                MEJA RIAS
+            <button type="button" class="filter-button" data-filter="ruang-makan">
+                RUANG MAKAN
             </button>
 
-            <button type="button" class="filter-button" data-filter="tempat-tidur">
-                TEMPAT TIDUR
+            <button type="button" class="filter-button" data-filter="kamar-tidur">
+                KAMAR TIDUR
             </button>
 
-            <button type="button" class="filter-button" data-filter="kursi-tamu">
-                KURSI TAMU
+            <button type="button" class="filter-button" data-filter="koleksi-lainnya">
+                KOLEKSI LAINNYA
             </button>
 
             <button type="button" class="filter-button" data-filter="available">
@@ -671,11 +1515,11 @@
                  01 MEJA MAKAN
             ================================== -->
 
-            <div class="product-card" data-category="meja-makan">
+            <div class="product-card" data-category="ruang-makan">
 
                 <div
                     class="product-image"
-                    onclick="openImage('images/meja-makan-1.jpg')"
+                    onclick="openGallery(['images/koleksi-01-1.jpg','images/koleksi-01-2.jpg','images/koleksi-01-3.jpg'], 0)"
                 >
 
                     <span class="product-status available">
@@ -683,7 +1527,7 @@
                     </span>
 
                     <img
-                        src="images/meja-makan-1.jpg"
+                        src="images/koleksi-01-1.jpg"
                         alt="Meja Makan Jati"
                     >
 
@@ -697,7 +1541,7 @@
                     </div>
 
                     <h2>
-                        Meja Makan Jati
+                        Meja Makan Jati Ukir
                     </h2>
 
                     <p>
@@ -765,11 +1609,11 @@
                  02 MEJA MAKAN
             ================================== -->
 
-            <div class="product-card" data-category="meja-makan">
+            <div class="product-card" data-category="ruang-makan">
 
                 <div
                     class="product-image"
-                    onclick="openImage('images/meja-makan-2.jpg')"
+                    onclick="openGallery(['images/koleksi-02-1.jpg','images/koleksi-02-2.jpg','images/koleksi-02-3.jpg'], 0)"
                 >
 
                     <span class="product-status available">
@@ -777,7 +1621,7 @@
                     </span>
 
                     <img
-                        src="images/meja-makan-2.jpg"
+                        src="images/koleksi-02-1.jpg"
                         alt="Detail Meja Makan Jati"
                     >
 
@@ -791,7 +1635,7 @@
                     </div>
 
                     <h2>
-                        Meja Makan Jati Elegan
+                        Meja Makan Jati Ukir Klasik
                     </h2>
 
                     <p>
@@ -859,11 +1703,11 @@
                  03 MEJA RIAS
             ================================== -->
 
-            <div class="product-card" data-category="meja-rias">
+            <div class="product-card" data-category="kamar-tidur">
 
                 <div
                     class="product-image"
-                    onclick="openImage('images/meja-rias-1.jpg')"
+                    onclick="openGallery(['images/koleksi-03-1.jpg'], 0)"
                 >
 
                     <span class="product-status available">
@@ -871,7 +1715,7 @@
                     </span>
 
                     <img
-                        src="images/meja-rias-1.jpg"
+                        src="images/koleksi-03-1.jpg"
                         alt="Meja Rias Jati"
                     >
 
@@ -885,7 +1729,7 @@
                     </div>
 
                     <h2>
-                        Meja Rias Jati
+                        Meja Rias Jati Elegan
                     </h2>
 
                     <p>
@@ -953,11 +1797,11 @@
                  04 MEJA RIAS
             ================================== -->
 
-            <div class="product-card" data-category="meja-rias">
+            <div class="product-card" data-category="kamar-tidur">
 
                 <div
                     class="product-image"
-                    onclick="openImage('images/meja-rias-2.jpg')"
+                    onclick="openGallery(['images/koleksi-03-3.jpg','images/koleksi-03-2.jpg','images/koleksi-04-1.jpg'], 0)"
                 >
 
                     <span class="product-status available">
@@ -965,8 +1809,8 @@
                     </span>
 
                     <img
-                        src="images/meja-rias-2.jpg"
-                        alt="Detail Meja Rias Jati"
+                        src="images/koleksi-03-3.jpg"
+                        alt="Meja Rias Ukiran Jepara"
                     >
 
                 </div>
@@ -1047,7 +1891,7 @@
                  05 TEMPAT TIDUR
             ================================== -->
 
-            <div class="product-card" data-category="tempat-tidur">
+            <div class="product-card" data-category="kamar-tidur">
 
                 <div
                     class="product-image"
@@ -1073,7 +1917,7 @@
                     </div>
 
                     <h2>
-                        Tempat Tidur Jati
+                        Tempat Tidur Jati Klasik
                     </h2>
 
                     <p>
@@ -1141,11 +1985,12 @@
                  06 KURSI TAMU
             ================================== -->
 
-            <div class="product-card" data-category="kursi-tamu">
+            
+            <div class="product-card" data-category="ruang-tamu">
 
                 <div
                     class="product-image"
-                    onclick="openImage('images/kursi-tamu-1.jpg')"
+                    onclick="openGallery(['images/koleksi-06-1.jpg','images/koleksi-06-2.jpg'], 0)"
                 >
 
                     <span class="product-status available">
@@ -1153,8 +1998,8 @@
                     </span>
 
                     <img
-                        src="images/kursi-tamu-1.jpg"
-                        alt="Kursi Tamu Jati"
+                        src="images/koleksi-06-1.jpg"
+                        alt="Set Kursi Tamu Jati"
                     >
 
                 </div>
@@ -1167,12 +2012,12 @@
                     </div>
 
                     <h2>
-                        Kursi Tamu Jati
+                        Set Kursi Tamu Jati Klasik
                     </h2>
 
                     <p>
-                        Kursi tamu kayu jati dengan karakter elegan
-                        dan pengerjaan khas Jepara.
+                        Satu set kursi tamu kayu jati dengan karakter kokoh,
+                        ukiran halus, dan tampilan hangat khas Jepara.
                     </p>
 
                     <div class="product-tags">
@@ -1183,6 +2028,99 @@
 
                         <span>
                             Ruang Tamu
+                        </span>
+
+                        <span>
+                            Set
+                        </span>
+
+                    </div>
+
+                    <div class="product-actions">
+
+                        <button
+                            type="button"
+                            class="product-action-button price-button"
+                            onclick="sendProductToWhatsApp(this, 'harga')"
+                        >
+                            HARGA
+                        </button>
+
+                        <button
+                            type="button"
+                            class="product-action-button order-button"
+                            onclick="sendProductToWhatsApp(this, 'pesan')"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <circle cx="9" cy="20" r="1"></circle>
+                                <circle cx="19" cy="20" r="1"></circle>
+                                <path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.5h7.9a2 2 0 0 0 2-1.6L21 7H6"></path>
+                            </svg>
+
+                            PESAN PRODUK
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- =================================
+                 07 KURSI TAMU
+            ================================== -->
+
+            
+            <div class="product-card" data-category="ruang-tamu">
+
+                <div
+                    class="product-image"
+                    onclick="openGallery(['images/koleksi-07-3.jpg','images/koleksi-07-2.jpg','images/koleksi-07-4.jpg'], 0)"
+                >
+
+                    <span class="product-status available">
+                        AVAILABLE
+                    </span>
+
+                    <img
+                        src="images/koleksi-07-3.jpg"
+                        alt="Set Sofa Tamu Jati Ukir"
+                    >
+
+                </div>
+
+
+                <div class="product-info">
+
+                    <div class="product-number">
+                        KOLEKSI 07
+                    </div>
+
+                    <h2>
+                        Set Sofa Tamu Jati Ukir Mewah
+                    </h2>
+
+                    <p>
+                        Sofa tamu kayu jati dengan ukiran mewah dan dudukan
+                        empuk, cocok untuk ruang tamu yang ingin tampil elegan.
+                    </p>
+
+                    <div class="product-tags">
+
+                        <span>
+                            Sofa Tamu
+                        </span>
+
+                        <span>
+                            Kayu Jati
                         </span>
 
                         <span>
@@ -1229,58 +2167,54 @@
 
             </div>
 
-
-
             <!-- =================================
-                 07 KURSI TAMU
+                 08 TEMPAT TIDUR JATI UKIR KLASIK JEPARA
             ================================== -->
 
-            <div class="product-card" data-category="kursi-tamu">
+            
+            <div class="product-card" data-category="koleksi-lainnya">
 
                 <div
                     class="product-image"
-                    onclick="openImage('images/kursi-tamu-2.jpg')"
+                    onclick="openGallery(['images/koleksi-08-1.jpg','images/koleksi-08-2.jpg'], 0)"
                 >
 
                     <span class="product-status available">
-                        AVAILABLE
+                        AVAILABLE 2
                     </span>
 
                     <img
-                        src="images/kursi-tamu-2.jpg"
-                        alt="Detail Kursi Tamu Jati"
+                        src="images/koleksi-08-1.jpg"
+                        alt="Lemari Sudut Jati Ukir"
                     >
 
                 </div>
 
-
                 <div class="product-info">
 
                     <div class="product-number">
-                        KOLEKSI 07
+                        KOLEKSI 08
                     </div>
 
                     <h2>
-                        Kursi Tamu Jati Elegan
+                        Lemari Sudut Jati Ukir
                     </h2>
 
                     <p>
-                        Furniture ruang tamu dengan detail ukiran
-                        dan finishing kayu jati berkualitas.
+                        Lemari sudut kayu jati dengan panel kaca dan ukiran
+                        dekoratif, pas untuk sudut ruangan agar tetap rapi dan elegan.
                     </p>
 
                     <div class="product-tags">
 
                         <span>
-                            Kayu Jati
+                            Lemari Sudut
                         </span>
-
                         <span>
-                            Handmade
+                            Kaca
                         </span>
-
                         <span>
-                            Finishing
+                            Ukiran
                         </span>
 
                     </div>
@@ -1323,6 +2257,718 @@
 
             </div>
 
+            <!-- =================================
+                 09 LEMARI HIAS SUDUT JATI UKIR JEPARA
+            ================================== -->
+
+            
+            <div class="product-card" data-category="kamar-tidur">
+
+                <div
+                    class="product-image"
+                    onclick="openGallery(['images/koleksi-09-1.jpg','images/koleksi-09-2.jpg','images/koleksi-09-3.jpg','images/koleksi-09-4.jpg'], 0)"
+                >
+
+                    <span class="product-status available">
+                        AVAILABLE
+                    </span>
+
+                    <img
+                        src="images/koleksi-09-1.jpg"
+                        alt="Set Tempat Tidur Gerbang Jati Ukir"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-number">
+                        KOLEKSI 09
+                    </div>
+
+                    <h2>
+                        Set Tempat Tidur Gerbang Jati Ukir
+                    </h2>
+
+                    <p>
+                        Set kamar tidur jati dengan model gerbang ukir,
+                        tampil megah, detail, dan kuat untuk nuansa klasik Jepara.
+                    </p>
+
+                    <div class="product-tags">
+
+                        <span>
+                            Kamar Tidur
+                        </span>
+                        <span>
+                            Kayu Jati
+                        </span>
+                        <span>
+                            Ukiran
+                        </span>
+
+                    </div>
+
+                    <div class="product-actions">
+
+                        <button
+                            type="button"
+                            class="product-action-button price-button"
+                            onclick="sendProductToWhatsApp(this, 'harga')"
+                        >
+                            HARGA
+                        </button>
+
+                        <button
+                            type="button"
+                            class="product-action-button order-button"
+                            onclick="sendProductToWhatsApp(this, 'pesan')"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <circle cx="9" cy="20" r="1"></circle>
+                                <circle cx="19" cy="20" r="1"></circle>
+                                <path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.5h7.9a2 2 0 0 0 2-1.6L21 7H6"></path>
+                            </svg>
+
+                            PESAN PRODUK
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- =================================
+                 10 LEMARI JAM HIAS JATI UKIR KLASIK
+            ================================== -->
+
+            <div class="product-card" data-category="koleksi-lainnya">
+
+                <div
+                    class="product-image"
+                    onclick="openImage('images/jam-hias-jati-1.jpg')"
+                >
+
+                    <span class="product-status available">
+                        AVAILABLE 2
+                    </span>
+
+                    <img
+                        src="images/jam-hias-jati-1.jpg"
+                        alt="Lemari Jam Hias Jati Ukir Klasik"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-number">
+                        KOLEKSI 10
+                    </div>
+
+                    <h2>
+                        Lemari Jam Hias Jati Ukir Klasik
+                    </h2>
+
+                    <p>
+                        Jam hias berdiri berbahan kayu jati dengan bentuk klasik dan detail ukiran untuk memperkuat karakter interior.
+                    </p>
+
+                    <div class="product-tags">
+
+                        <span>
+                            Jam Hias
+                        </span>
+                        <span>
+                            Kayu Jati
+                        </span>
+                        <span>
+                            Klasik
+                        </span>
+
+                    </div>
+
+                    <div class="product-actions">
+
+                        <button
+                            type="button"
+                            class="product-action-button price-button"
+                            onclick="sendProductToWhatsApp(this, 'harga')"
+                        >
+                            HARGA
+                        </button>
+
+                        <button
+                            type="button"
+                            class="product-action-button order-button"
+                            onclick="sendProductToWhatsApp(this, 'pesan')"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <circle cx="9" cy="20" r="1"></circle>
+                                <circle cx="19" cy="20" r="1"></circle>
+                                <path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.5h7.9a2 2 0 0 0 2-1.6L21 7H6"></path>
+                            </svg>
+
+                            PESAN PRODUK
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 11 MEJA KANTOR JATI UKIR KLASIK JEPARA
+            ================================== -->
+
+            <div class="product-card" data-category="koleksi-lainnya">
+
+                <div
+                    class="product-image"
+                    onclick="openImage('images/meja-kantor-1.jpg')"
+                >
+
+                    <span class="product-status available">
+                        AVAILABLE
+                    </span>
+
+                    <img
+                        src="images/meja-kantor-1.jpg"
+                        alt="Meja Kantor Jati Ukir Klasik Jepara"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-number">
+                        KOLEKSI 11
+                    </div>
+
+                    <h2>
+                        Meja Kantor Jati Ukir Klasik Jepara
+                    </h2>
+
+                    <p>
+                        Meja kantor berbahan kayu jati dengan konstruksi kokoh dan detail ukiran klasik untuk ruang kerja yang berkelas.
+                    </p>
+
+                    <div class="product-tags">
+
+                        <span>
+                            Meja Kantor
+                        </span>
+                        <span>
+                            Kayu Jati
+                        </span>
+                        <span>
+                            Ukiran
+                        </span>
+
+                    </div>
+
+                    <div class="product-actions">
+
+                        <button
+                            type="button"
+                            class="product-action-button price-button"
+                            onclick="sendProductToWhatsApp(this, 'harga')"
+                        >
+                            HARGA
+                        </button>
+
+                        <button
+                            type="button"
+                            class="product-action-button order-button"
+                            onclick="sendProductToWhatsApp(this, 'pesan')"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <circle cx="9" cy="20" r="1"></circle>
+                                <circle cx="19" cy="20" r="1"></circle>
+                                <path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.5h7.9a2 2 0 0 0 2-1.6L21 7H6"></path>
+                            </svg>
+
+                            PESAN PRODUK
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 12 SET KURSI TAMU JATI UKIR KLASIK
+            ================================== -->
+
+            <div class="product-card" data-category="ruang-tamu">
+
+                <div
+                    class="product-image"
+                    onclick="openImage('images/kursi-tamu-3.jpg')"
+                >
+
+                    <span class="product-status available">
+                        AVAILABLE
+                    </span>
+
+                    <img
+                        src="images/kursi-tamu-3.jpg"
+                        alt="Set Kursi Tamu Jati Ukir Klasik"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-number">
+                        KOLEKSI 12
+                    </div>
+
+                    <h2>
+                        Set Kursi Tamu Jati Ukir Klasik
+                    </h2>
+
+                    <p>
+                        Set kursi tamu jati lengkap dengan meja tengah kaca, menghadirkan nuansa klasik yang hangat untuk ruang tamu.
+                    </p>
+
+                    <div class="product-tags">
+
+                        <span>
+                            Kursi Tamu
+                        </span>
+                        <span>
+                            Set Lengkap
+                        </span>
+                        <span>
+                            Jepara
+                        </span>
+
+                    </div>
+
+                    <div class="product-actions">
+
+                        <button
+                            type="button"
+                            class="product-action-button price-button"
+                            onclick="sendProductToWhatsApp(this, 'harga')"
+                        >
+                            HARGA
+                        </button>
+
+                        <button
+                            type="button"
+                            class="product-action-button order-button"
+                            onclick="sendProductToWhatsApp(this, 'pesan')"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <circle cx="9" cy="20" r="1"></circle>
+                                <circle cx="19" cy="20" r="1"></circle>
+                                <path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.5h7.9a2 2 0 0 0 2-1.6L21 7H6"></path>
+                            </svg>
+
+                            PESAN PRODUK
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 13 SET BUFET TV & LEMARI HIAS JATI UKIR
+            ================================== -->
+
+            <div class="product-card" data-category="ruang-tamu">
+
+                <div
+                    class="product-image"
+                    onclick="openImage('images/set-bufet-tv-1.jpg')"
+                >
+
+                    <span class="product-status available">
+                        AVAILABLE
+                    </span>
+
+                    <img
+                        src="images/set-bufet-tv-1.jpg"
+                        alt="Set Bufet TV & Lemari Hias Jati Ukir"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-number">
+                        KOLEKSI 13
+                    </div>
+
+                    <h2>
+                        Set Bufet TV & Lemari Hias Jati Ukir
+                    </h2>
+
+                    <p>
+                        Set bufet TV dengan dua lemari hias pendamping, dibuat dari kayu jati dengan detail ukiran khas furniture Jepara.
+                    </p>
+
+                    <div class="product-tags">
+
+                        <span>
+                            Bufet TV
+                        </span>
+                        <span>
+                            Lemari Hias
+                        </span>
+                        <span>
+                            1 Set
+                        </span>
+
+                    </div>
+
+                    <div class="product-actions">
+
+                        <button
+                            type="button"
+                            class="product-action-button price-button"
+                            onclick="sendProductToWhatsApp(this, 'harga')"
+                        >
+                            HARGA
+                        </button>
+
+                        <button
+                            type="button"
+                            class="product-action-button order-button"
+                            onclick="sendProductToWhatsApp(this, 'pesan')"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <circle cx="9" cy="20" r="1"></circle>
+                                <circle cx="19" cy="20" r="1"></circle>
+                                <path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.5h7.9a2 2 0 0 0 2-1.6L21 7H6"></path>
+                            </svg>
+
+                            PESAN PRODUK
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 14 MEJA RIAS JATI UKIR KLASIK
+            ================================== -->
+
+            <div class="product-card" data-category="kamar-tidur">
+
+                <div
+                    class="product-image"
+                    onclick="openImage('images/meja-rias-3.jpg')"
+                >
+
+                    <span class="product-status available">
+                        AVAILABLE
+                    </span>
+
+                    <img
+                        src="images/meja-rias-3.jpg"
+                        alt="Meja Rias Jati Ukir Klasik"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-number">
+                        KOLEKSI 14
+                    </div>
+
+                    <h2>
+                        Meja Rias Jati Ukir Klasik
+                    </h2>
+
+                    <p>
+                        Meja rias jati dengan cermin besar dan detail ukiran klasik, cocok untuk kamar dengan tampilan mewah dan elegan.
+                    </p>
+
+                    <div class="product-tags">
+
+                        <span>
+                            Meja Rias
+                        </span>
+                        <span>
+                            Cermin Besar
+                        </span>
+                        <span>
+                            Ukiran
+                        </span>
+
+                    </div>
+
+                    <div class="product-actions">
+
+                        <button
+                            type="button"
+                            class="product-action-button price-button"
+                            onclick="sendProductToWhatsApp(this, 'harga')"
+                        >
+                            HARGA
+                        </button>
+
+                        <button
+                            type="button"
+                            class="product-action-button order-button"
+                            onclick="sendProductToWhatsApp(this, 'pesan')"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <circle cx="9" cy="20" r="1"></circle>
+                                <circle cx="19" cy="20" r="1"></circle>
+                                <path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.5h7.9a2 2 0 0 0 2-1.6L21 7H6"></path>
+                            </svg>
+
+                            PESAN PRODUK
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================
+                 15 LEMARI PAKAIAN JATI UKIR 3 PINTU
+            ================================== -->
+
+            <div class="product-card" data-category="kamar-tidur">
+
+                <div
+                    class="product-image"
+                    onclick="openImage('images/lemari-pakaian-1.jpg')"
+                >
+
+                    <span class="product-status available">
+                        AVAILABLE
+                    </span>
+
+                    <img
+                        class="straighten-photo"
+                        src="images/lemari-pakaian-1.jpg"
+                        alt="Lemari Pakaian Jati Ukir 3 Pintu"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-number">
+                        KOLEKSI 15
+                    </div>
+
+                    <h2>
+                        Lemari Pakaian Jati Ukir 3 Pintu
+                    </h2>
+
+                    <p>
+                        Lemari pakaian kayu jati tiga pintu dengan ornamen ukiran dan ruang penyimpanan luas untuk kebutuhan kamar tidur.
+                    </p>
+
+                    <div class="product-tags">
+
+                        <span>
+                            Lemari Pakaian
+                        </span>
+                        <span>
+                            3 Pintu
+                        </span>
+                        <span>
+                            Kayu Jati
+                        </span>
+
+                    </div>
+
+                    <div class="product-actions">
+
+                        <button
+                            type="button"
+                            class="product-action-button price-button"
+                            onclick="sendProductToWhatsApp(this, 'harga')"
+                        >
+                            HARGA
+                        </button>
+
+                        <button
+                            type="button"
+                            class="product-action-button order-button"
+                            onclick="sendProductToWhatsApp(this, 'pesan')"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <circle cx="9" cy="20" r="1"></circle>
+                                <circle cx="19" cy="20" r="1"></circle>
+                                <path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.5h7.9a2 2 0 0 0 2-1.6L21 7H6"></path>
+                            </svg>
+
+                            PESAN PRODUK
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- =================================
+                 16 TEMPAT TIDUR JATI UKIR PANEL KLASIK
+            ================================== -->
+
+            <div class="product-card" data-category="kamar-tidur">
+
+                <div
+                    class="product-image"
+                    onclick="openImage('images/koleksi-16-1.png')"
+                >
+
+                    <span class="product-status available">
+                        AVAILABLE
+                    </span>
+
+                    <img
+                        src="images/koleksi-16-1.png"
+                        alt="Tempat Tidur Jati Ukir Panel Klasik"
+                    >
+
+                </div>
+
+                <div class="product-info">
+
+                    <div class="product-number">
+                        KOLEKSI 16
+                    </div>
+
+                    <h2>
+                        Tempat Tidur Jati Ukir Panel Klasik
+                    </h2>
+
+                    <p>
+                        Tempat tidur kayu jati dengan panel ukiran floral pada headboard dan footboard,
+                        cocok untuk kamar tidur yang ingin tampil kokoh, rapi, dan elegan.
+                    </p>
+
+                    <div class="product-tags">
+
+                        <span>
+                            Tempat Tidur
+                        </span>
+                        <span>
+                            Kayu Jati
+                        </span>
+                        <span>
+                            Ukiran
+                        </span>
+
+                    </div>
+
+                    <div class="product-actions">
+
+                        <button
+                            type="button"
+                            class="product-action-button price-button"
+                            onclick="sendProductToWhatsApp(this, 'harga')"
+                        >
+                            HARGA
+                        </button>
+
+                        <button
+                            type="button"
+                            class="product-action-button order-button"
+                            onclick="sendProductToWhatsApp(this, 'pesan')"
+                        >
+                            <svg
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="2"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                aria-hidden="true"
+                            >
+                                <circle cx="9" cy="20" r="1"></circle>
+                                <circle cx="19" cy="20" r="1"></circle>
+                                <path d="M3 4h2l2.4 10.2a2 2 0 0 0 2 1.5h7.9a2 2 0 0 0 2-1.6L21 7H6"></path>
+                            </svg>
+
+                            PESAN PRODUK
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
 
             <div class="filter-empty" id="filterEmpty">
                 <strong>Produk belum tersedia</strong>
@@ -1372,6 +3018,39 @@
             >
 
         </div>
+
+
+        <!-- NAVIGASI GALERI -->
+
+        <button
+            type="button"
+            class="gallery-nav gallery-prev"
+            id="galleryPrev"
+            aria-label="Foto sebelumnya"
+        >
+            ‹
+        </button>
+
+        <button
+            type="button"
+            class="gallery-nav gallery-next"
+            id="galleryNext"
+            aria-label="Foto berikutnya"
+        >
+            ›
+        </button>
+
+        <div
+            class="gallery-counter"
+            id="galleryCounter"
+            aria-live="polite"
+        ></div>
+
+        <div
+            class="gallery-thumbnails"
+            id="galleryThumbnails"
+            aria-label="Pilihan foto produk"
+        ></div>
 
 
         <!-- ZOOM -->
@@ -1449,7 +3128,7 @@
 
 
         /* =========================
-           FILTER PRODUK
+           FILTER + SEARCH PRODUK
         ========================== */
 
         const filterButtons =
@@ -1461,64 +3140,358 @@
         const filterEmpty =
             document.getElementById("filterEmpty");
 
+        const searchLauncher =
+            document.getElementById("productSearchLauncher");
+
+        const searchPanel =
+            document.getElementById("productSearchPanel");
+
+        const searchInput =
+            document.getElementById("productSearchInput");
+
+        const searchClear =
+            document.getElementById("productSearchClear");
+
+        const searchClose =
+            document.getElementById("productSearchClose");
+
+        const searchMascotStage =
+            document.getElementById("searchMascotStage");
+
+        let selectedProductFilter = "semua";
+        let productSearchQuery = "";
+        let searchPanelOpen = false;
+        let lastScrollY = window.scrollY;
+
+
+        function normalizeSearchText(text) {
+            return (text || "")
+                .toLowerCase()
+                .normalize("NFD")
+                .replace(/[\u0300-\u036f]/g, "")
+                .trim();
+        }
+
+
+        function applyProductFilters() {
+
+            let visibleProducts = 0;
+            const normalizedQuery = normalizeSearchText(productSearchQuery);
+
+            productCards.forEach(function(card) {
+
+                const category = card.dataset.category || "";
+
+                const statusElement =
+                    card.querySelector(".product-status");
+
+                const status = statusElement
+                    ? normalizeSearchText(statusElement.textContent)
+                    : "";
+
+                const searchableText = normalizeSearchText(
+                    card.textContent + " " + category
+                );
+
+                const categoryMatches =
+                    selectedProductFilter === "semua" ||
+                    (selectedProductFilter === "available" && status === "available") ||
+                    category === selectedProductFilter;
+
+                const searchMatches =
+                    normalizedQuery === "" ||
+                    searchableText.includes(normalizedQuery);
+
+                const shouldShow =
+                    categoryMatches && searchMatches;
+
+                if (shouldShow) {
+                    card.classList.remove("filter-hidden");
+                    visibleProducts++;
+                }
+                else {
+                    card.classList.add("filter-hidden");
+                }
+
+            });
+
+            if (filterEmpty) {
+                filterEmpty.style.display =
+                    visibleProducts === 0 ? "block" : "none";
+            }
+
+        }
+
+
+        function setActiveFilterButton(filterName) {
+
+            filterButtons.forEach(function(item) {
+                item.classList.toggle(
+                    "active",
+                    (item.dataset.filter || "semua") === filterName
+                );
+            });
+
+        }
+
+
+        function resetProductSearch() {
+
+            productSearchQuery = "";
+
+            if (searchInput) {
+                searchInput.value = "";
+            }
+
+        }
+
 
         filterButtons.forEach(function(button) {
 
             button.addEventListener("click", function() {
 
-                const selectedFilter =
-                    button.dataset.filter;
+                /*
+                   Saat kategori diklik, pencarian lama dibersihkan.
+                   Jadi setelah search "lemari", klik SEMUA akan
+                   benar-benar menampilkan semua produk lagi.
+                */
+                resetProductSearch();
 
-                filterButtons.forEach(function(item) {
-                    item.classList.remove("active");
-                });
+                selectedProductFilter =
+                    button.dataset.filter || "semua";
 
-                button.classList.add("active");
+                setActiveFilterButton(selectedProductFilter);
 
-                let visibleProducts = 0;
-
-                productCards.forEach(function(card) {
-
-                    const category =
-                        card.dataset.category;
-
-                    const statusElement =
-                        card.querySelector(".product-status");
-
-                    const status = statusElement
-                        ? statusElement.textContent.trim().toLowerCase()
-                        : "";
-
-                    let shouldShow = false;
-
-                    if (selectedFilter === "semua") {
-                        shouldShow = true;
-                    }
-                    else if (selectedFilter === "available") {
-                        shouldShow = status === "available";
-                    }
-                    else {
-                        shouldShow = category === selectedFilter;
-                    }
-
-                    if (shouldShow) {
-                        card.classList.remove("filter-hidden");
-                        visibleProducts++;
-                    }
-                    else {
-                        card.classList.add("filter-hidden");
-                    }
-
-                });
-
-                if (filterEmpty) {
-                    filterEmpty.style.display =
-                        visibleProducts === 0 ? "block" : "none";
-                }
+                closeProductSearch();
+                applyProductFilters();
 
             });
 
         });
+
+
+        function openProductSearch() {
+
+            if (!searchPanel || !searchLauncher) {
+                return;
+            }
+
+            searchPanel.classList.add("open");
+            searchPanel.setAttribute("aria-hidden", "false");
+            searchLauncher.setAttribute("aria-expanded", "true");
+            searchPanelOpen = true;
+
+            window.setTimeout(function() {
+                if (searchInput) {
+                    searchInput.focus();
+                }
+            }, 120);
+
+        }
+
+
+        function closeProductSearch(options) {
+
+            const settings = options || {};
+
+            if (!searchPanel || !searchLauncher) {
+                return;
+            }
+
+            searchPanel.classList.remove("open");
+            searchPanel.setAttribute("aria-hidden", "true");
+            searchLauncher.setAttribute("aria-expanded", "false");
+            searchPanelOpen = false;
+
+            if (settings.clear === true) {
+                productSearchQuery = "";
+
+                if (searchInput) {
+                    searchInput.value = "";
+                }
+
+                applyProductFilters();
+            }
+
+        }
+
+
+        /* =========================
+           MASCOT PENCARIAN HIDUP
+           - karakter mengikuti cursor secara halus
+           - klik/tap memainkan reaksi pencarian
+           - file mascot dibaca dari images/search-tree-mascot.svg
+        ========================== */
+
+        const mascotPupilLeft = document.getElementById("mascotPupilLeft");
+        const mascotPupilRight = document.getElementById("mascotPupilRight");
+
+        function resetMascotPose() {
+            if (!searchMascotStage) return;
+
+            searchMascotStage.style.transform = "";
+
+            if (mascotPupilLeft) mascotPupilLeft.style.transform = "translate(0px, 0px)";
+            if (mascotPupilRight) mascotPupilRight.style.transform = "translate(0px, 0px)";
+        }
+
+        function playMascotReaction() {
+            if (!searchLauncher) return;
+
+            searchLauncher.classList.remove("searching");
+            void searchLauncher.offsetWidth;
+            searchLauncher.classList.add("searching");
+
+            window.setTimeout(function() {
+                searchLauncher.classList.remove("searching");
+            }, 760);
+        }
+
+        if (searchLauncher && searchMascotStage) {
+
+            searchLauncher.addEventListener("pointermove", function(event) {
+                if (event.pointerType === "touch") return;
+
+                const rect = searchLauncher.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+
+                const nx = Math.max(-1, Math.min(1, (event.clientX - centerX) / (rect.width / 2)));
+                const ny = Math.max(-1, Math.min(1, (event.clientY - centerY) / (rect.height / 2)));
+
+                const pupilX = (nx * 2.7).toFixed(2);
+                const pupilY = (ny * 2.0).toFixed(2);
+
+                if (mascotPupilLeft) mascotPupilLeft.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
+                if (mascotPupilRight) mascotPupilRight.style.transform = `translate(${pupilX}px, ${pupilY}px)`;
+
+                searchMascotStage.style.transform =
+                    `perspective(420px) rotateY(${(nx * 4.2).toFixed(2)}deg) rotateX(${(-ny * 2.8).toFixed(2)}deg)`;
+            });
+
+            searchLauncher.addEventListener("pointerleave", resetMascotPose);
+            searchLauncher.addEventListener("blur", resetMascotPose);
+        }
+
+
+        if (searchLauncher) {
+            searchLauncher.addEventListener("click", function(event) {
+                event.stopPropagation();
+                playMascotReaction();
+
+                if (searchPanelOpen) {
+                    closeProductSearch();
+                }
+                else {
+                    openProductSearch();
+                }
+            });
+        }
+
+
+        if (searchInput) {
+            searchInput.addEventListener("input", function() {
+                productSearchQuery = searchInput.value;
+
+                /*
+                   Search selalu mencari dari SEMUA produk.
+                   Ini juga membuat indikator kategori sesuai
+                   dengan keadaan pencarian yang sedang aktif.
+                */
+                if (normalizeSearchText(productSearchQuery) !== "") {
+                    selectedProductFilter = "semua";
+                    setActiveFilterButton("semua");
+                }
+
+                applyProductFilters();
+            });
+        }
+
+
+        if (searchClear) {
+            searchClear.addEventListener("click", function(event) {
+                event.stopPropagation();
+
+                resetProductSearch();
+                selectedProductFilter = "semua";
+                setActiveFilterButton("semua");
+
+                if (searchInput) {
+                    searchInput.focus();
+                }
+
+                applyProductFilters();
+            });
+        }
+
+
+        if (searchClose) {
+            searchClose.addEventListener("click", function(event) {
+                event.stopPropagation();
+                closeProductSearch();
+            });
+        }
+
+
+        if (searchPanel) {
+            searchPanel.addEventListener("click", function(event) {
+                event.stopPropagation();
+            });
+        }
+
+
+        document.addEventListener("click", function(event) {
+            if (
+                searchPanelOpen &&
+                searchLauncher &&
+                searchPanel &&
+                !searchLauncher.contains(event.target) &&
+                !searchPanel.contains(event.target)
+            ) {
+                closeProductSearch();
+            }
+        });
+
+
+        document.querySelectorAll(".navbar .nav-menu a").forEach(function(link) {
+            link.addEventListener("click", function() {
+                closeProductSearch();
+            });
+        });
+
+
+        window.addEventListener(
+            "scroll",
+            function() {
+                const currentScrollY = window.scrollY;
+
+                if (
+                    searchPanelOpen &&
+                    Math.abs(currentScrollY - lastScrollY) > 8
+                ) {
+                    /*
+                       Search box ditutup saat user mulai scroll,
+                       tetapi hasil pencarian tetap dipertahankan.
+                    */
+                    closeProductSearch();
+                }
+
+                lastScrollY = currentScrollY;
+            },
+            { passive: true }
+        );
+
+
+
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Escape" && searchPanelOpen) {
+                closeProductSearch();
+            }
+        });
+
+
+        applyProductFilters();
 
 
         /* =========================
@@ -1546,7 +3519,7 @@
                     .trim();
 
             const nomorWhatsApp =
-                "6281244170370";
+                "6285362227009";
 
             let message = "";
 
@@ -1602,13 +3575,95 @@
            UPDATE GAMBAR
         ========================== */
 
-        function updateImage() {
+        function clampImagePosition() {
 
+            if (zoom <= 1) {
+                positionX = 0;
+                positionY = 0;
+                return;
+            }
+
+            const baseWidth =
+                modalImage.offsetWidth || 0;
+
+            const baseHeight =
+                modalImage.offsetHeight || 0;
+
+            const wrapperWidth =
+                imageWrapper.clientWidth || window.innerWidth;
+
+            const wrapperHeight =
+                imageWrapper.clientHeight || window.innerHeight;
+
+            /*
+               Batas gerak mengikuti ukuran gambar sesudah zoom.
+               Tambahan 24px memberi sedikit ruang agar detail tepi
+               tetap mudah dilihat tanpa gambar "kabur" keluar layar.
+            */
+            const maxX =
+                Math.max(
+                    0,
+                    (baseWidth * zoom - wrapperWidth) / 2
+                ) + 24;
+
+            const maxY =
+                Math.max(
+                    0,
+                    (baseHeight * zoom - wrapperHeight) / 2
+                ) + 24;
+
+            positionX =
+                Math.min(
+                    maxX,
+                    Math.max(-maxX, positionX)
+                );
+
+            positionY =
+                Math.min(
+                    maxY,
+                    Math.max(-maxY, positionY)
+                );
+
+        }
+
+
+        let transformFrame = null;
+
+
+        function applyImageTransform() {
+
+            transformFrame = null;
+
+            clampImagePosition();
+
+            /*
+               translate3d membantu browser memakai compositor/GPU,
+               jadi pinch & pan di HP terasa lebih halus.
+            */
             modalImage.style.transform =
-                `translate(${positionX}px, ${positionY}px) scale(${zoom})`;
+                `translate3d(${positionX}px, ${positionY}px, 0) scale(${zoom})`;
 
             zoomResetButton.textContent =
                 Math.round(zoom * 100) + "%";
+
+        }
+
+
+        function updateImage() {
+
+            /*
+               Touchmove bisa terpanggil puluhan kali per detik.
+               Kita render maksimal 1x per animation frame
+               agar tidak saling kejar dan terlihat "getar".
+            */
+            if (transformFrame !== null) {
+                return;
+            }
+
+            transformFrame =
+                requestAnimationFrame(
+                    applyImageTransform
+                );
 
         }
 
@@ -1625,6 +3680,31 @@
             document.body.style.overflow = "";
 
             modalImage.src = "";
+
+            currentGallery = [];
+            currentGalleryIndex = 0;
+
+            if (galleryThumbnails) {
+                galleryThumbnails.innerHTML = "";
+                galleryThumbnails.classList.remove("visible");
+            }
+
+            if (galleryCounter) {
+                galleryCounter.classList.remove("visible");
+            }
+
+            if (galleryPrevButton) {
+                galleryPrevButton.classList.remove("visible");
+            }
+
+            if (galleryNextButton) {
+                galleryNextButton.classList.remove("visible");
+            }
+
+            if (transformFrame !== null) {
+                cancelAnimationFrame(transformFrame);
+                transformFrame = null;
+            }
 
             zoom = 1;
 
@@ -1915,8 +3995,697 @@
             }
         );
 
+    
+        /* =========================
+           GALERI PRODUK MULTI-FOTO
+        ========================== */
+
+        const galleryPrevButton =
+            document.getElementById("galleryPrev");
+
+        const galleryNextButton =
+            document.getElementById("galleryNext");
+
+        const galleryCounter =
+            document.getElementById("galleryCounter");
+
+        const galleryThumbnails =
+            document.getElementById("galleryThumbnails");
+
+        let currentGallery = [];
+        let currentGalleryIndex = 0;
+        let touchStartX = 0;
+        let touchEndX = 0;
+
+
+        function resetGalleryZoom() {
+
+            zoom = 1;
+            positionX = 0;
+            positionY = 0;
+
+            updateImage();
+
+        }
+
+
+        function renderGalleryImage() {
+
+            if (!currentGallery.length) {
+                return;
+            }
+
+            modalImage.src =
+                currentGallery[currentGalleryIndex];
+
+            resetGalleryZoom();
+
+            const hasMultiple =
+                currentGallery.length > 1;
+
+            galleryPrevButton.classList.toggle(
+                "visible",
+                hasMultiple
+            );
+
+            galleryNextButton.classList.toggle(
+                "visible",
+                hasMultiple
+            );
+
+            galleryCounter.classList.toggle(
+                "visible",
+                hasMultiple
+            );
+
+            galleryThumbnails.classList.toggle(
+                "visible",
+                hasMultiple
+            );
+
+            galleryCounter.textContent =
+                (currentGalleryIndex + 1) +
+                " / " +
+                currentGallery.length;
+
+            galleryThumbnails
+                .querySelectorAll(".gallery-thumb")
+                .forEach(function(thumb, index) {
+
+                    thumb.classList.toggle(
+                        "active",
+                        index === currentGalleryIndex
+                    );
+
+                });
+
+        }
+
+
+        function buildGalleryThumbnails() {
+
+            galleryThumbnails.innerHTML = "";
+
+            currentGallery.forEach(
+                function(imageSource, index) {
+
+                    const button =
+                        document.createElement("button");
+
+                    button.type = "button";
+                    button.className = "gallery-thumb";
+                    button.setAttribute(
+                        "aria-label",
+                        "Lihat foto " + (index + 1)
+                    );
+
+                    const image =
+                        document.createElement("img");
+
+                    image.src = imageSource;
+                    image.alt =
+                        "Thumbnail foto produk " + (index + 1);
+
+                    button.appendChild(image);
+
+                    button.addEventListener(
+                        "click",
+                        function(event) {
+
+                            event.stopPropagation();
+
+                            currentGalleryIndex = index;
+
+                            renderGalleryImage();
+
+                        }
+                    );
+
+                    galleryThumbnails.appendChild(button);
+
+                }
+            );
+
+        }
+
+
+        function openGallery(images, startIndex) {
+
+            currentGallery =
+                Array.isArray(images)
+                    ? images.slice()
+                    : [images];
+
+            currentGalleryIndex =
+                Number.isInteger(startIndex)
+                    ? startIndex
+                    : 0;
+
+            if (
+                currentGalleryIndex < 0 ||
+                currentGalleryIndex >= currentGallery.length
+            ) {
+                currentGalleryIndex = 0;
+            }
+
+            buildGalleryThumbnails();
+            renderGalleryImage();
+
+            modal.classList.add("active");
+            document.body.style.overflow = "hidden";
+
+        }
+
+
+        /*
+           Produk lama yang masih cuma punya 1 foto
+           tetap memakai openImage() tanpa perlu diubah.
+        */
+        function openImage(imageSource) {
+
+            openGallery(
+                [imageSource],
+                0
+            );
+
+        }
+
+
+        function moveGallery(direction) {
+
+            if (currentGallery.length <= 1) {
+                return;
+            }
+
+            currentGalleryIndex =
+                (
+                    currentGalleryIndex +
+                    direction +
+                    currentGallery.length
+                ) %
+                currentGallery.length;
+
+            renderGalleryImage();
+
+        }
+
+
+        galleryPrevButton.addEventListener(
+            "click",
+            function(event) {
+
+                event.stopPropagation();
+
+                moveGallery(-1);
+
+            }
+        );
+
+
+        galleryNextButton.addEventListener(
+            "click",
+            function(event) {
+
+                event.stopPropagation();
+
+                moveGallery(1);
+
+            }
+        );
+
+
+        galleryThumbnails.addEventListener(
+            "click",
+            function(event) {
+
+                event.stopPropagation();
+
+            }
+        );
+
+
+        document.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (!modal.classList.contains("active")) {
+                    return;
+                }
+
+                if (event.key === "ArrowLeft") {
+                    moveGallery(-1);
+                }
+
+                if (event.key === "ArrowRight") {
+                    moveGallery(1);
+                }
+
+            }
+        );
+
+
+        /*
+           =====================================================
+           MOBILE GESTURE
+           - 2 jari  = pinch zoom
+           - 1 jari saat zoom = geser gambar / pan
+           - 1 jari saat 100%  = swipe gallery
+           =====================================================
+        */
+
+        let touchMode = "none";
+
+        let pinchLastDistance = 0;
+        let pinchLastMidX = 0;
+        let pinchLastMidY = 0;
+
+        let panTouchStartX = 0;
+        let panTouchStartY = 0;
+        let panPositionStartX = 0;
+        let panPositionStartY = 0;
+
+
+        function getTouchDistance(touchA, touchB) {
+
+            const dx =
+                touchB.clientX - touchA.clientX;
+
+            const dy =
+                touchB.clientY - touchA.clientY;
+
+            return Math.hypot(dx, dy);
+
+        }
+
+
+        function getTouchMidpoint(touchA, touchB) {
+
+            const rect =
+                imageWrapper.getBoundingClientRect();
+
+            return {
+                x:
+                    (
+                        touchA.clientX +
+                        touchB.clientX
+                    ) / 2
+                    -
+                    (
+                        rect.left +
+                        rect.width / 2
+                    ),
+
+                y:
+                    (
+                        touchA.clientY +
+                        touchB.clientY
+                    ) / 2
+                    -
+                    (
+                        rect.top +
+                        rect.height / 2
+                    )
+            };
+
+        }
+
+
+        imageWrapper.addEventListener(
+            "touchstart",
+            function(event) {
+
+                /*
+                   PINCH dimulai dengan 2 jari.
+                */
+                if (event.touches.length === 2) {
+
+                    event.preventDefault();
+
+                    touchMode = "pinch";
+
+                    const touchA =
+                        event.touches[0];
+
+                    const touchB =
+                        event.touches[1];
+
+                    const midpoint =
+                        getTouchMidpoint(
+                            touchA,
+                            touchB
+                        );
+
+                    pinchLastDistance =
+                        getTouchDistance(
+                            touchA,
+                            touchB
+                        );
+
+                    pinchLastMidX =
+                        midpoint.x;
+
+                    pinchLastMidY =
+                        midpoint.y;
+
+                    return;
+
+                }
+
+
+                /*
+                   Saat sudah zoom:
+                   satu jari dipakai untuk melihat detail
+                   kiri/kanan/atas/bawah.
+                */
+                if (
+                    event.touches.length === 1 &&
+                    zoom > 1
+                ) {
+
+                    event.preventDefault();
+
+                    touchMode = "pan";
+
+                    panTouchStartX =
+                        event.touches[0].clientX;
+
+                    panTouchStartY =
+                        event.touches[0].clientY;
+
+                    panPositionStartX =
+                        positionX;
+
+                    panPositionStartY =
+                        positionY;
+
+                    return;
+
+                }
+
+
+                /*
+                   Saat gambar masih 100%:
+                   satu jari tetap berfungsi untuk slide foto.
+                */
+                if (event.touches.length === 1) {
+
+                    touchMode = "swipe";
+
+                    touchStartX =
+                        event.touches[0].clientX;
+
+                    touchEndX =
+                        touchStartX;
+
+                }
+
+            },
+            {
+                passive: false
+            }
+        );
+
+
+        imageWrapper.addEventListener(
+            "touchmove",
+            function(event) {
+
+                /*
+                   PINCH TO ZOOM
+                   Zoom mengikuti posisi tengah kedua jari,
+                   jadi bukan cuma membesar dari tengah gambar.
+                */
+                if (
+                    touchMode === "pinch" &&
+                    event.touches.length === 2
+                ) {
+
+                    event.preventDefault();
+
+                    const touchA =
+                        event.touches[0];
+
+                    const touchB =
+                        event.touches[1];
+
+                    const currentDistance =
+                        getTouchDistance(
+                            touchA,
+                            touchB
+                        );
+
+                    const currentMidpoint =
+                        getTouchMidpoint(
+                            touchA,
+                            touchB
+                        );
+
+                    if (pinchLastDistance <= 0) {
+                        pinchLastDistance = currentDistance;
+                        pinchLastMidX = currentMidpoint.x;
+                        pinchLastMidY = currentMidpoint.y;
+                        return;
+                    }
+
+                    /*
+                       Pakai perubahan dari frame sebelumnya,
+                       bukan menghitung ulang dari awal gesture.
+                       Ini mengurangi loncatan kecil saat jari bergerak.
+                    */
+                    const rawScale =
+                        currentDistance /
+                        pinchLastDistance;
+
+                    /*
+                       Noise dari sensor touch sangat kecil diabaikan.
+                       Jadi gambar tidak bergetar saat jari hampir diam.
+                    */
+                    const scaleDelta =
+                        Math.abs(rawScale - 1) < 0.002
+                            ? 1
+                            : rawScale;
+
+                    const oldZoom = zoom;
+
+                    let nextZoom =
+                        oldZoom * scaleDelta;
+
+                    nextZoom =
+                        Math.min(
+                            4,
+                            Math.max(1, nextZoom)
+                        );
+
+                    const actualRatio =
+                        oldZoom > 0
+                            ? nextZoom / oldZoom
+                            : 1;
+
+                    /*
+                       Ikuti titik tengah dua jari secara incremental.
+                    */
+                    const midMoveX =
+                        currentMidpoint.x -
+                        pinchLastMidX;
+
+                    const midMoveY =
+                        currentMidpoint.y -
+                        pinchLastMidY;
+
+                    positionX =
+                        currentMidpoint.x
+                        -
+                        actualRatio *
+                        (
+                            pinchLastMidX -
+                            positionX
+                        )
+                        +
+                        midMoveX * 0.15;
+
+                    positionY =
+                        currentMidpoint.y
+                        -
+                        actualRatio *
+                        (
+                            pinchLastMidY -
+                            positionY
+                        )
+                        +
+                        midMoveY * 0.15;
+
+                    zoom = nextZoom;
+
+                    if (zoom <= 1.015) {
+                        zoom = 1;
+                        positionX = 0;
+                        positionY = 0;
+                    }
+
+                    pinchLastDistance =
+                        currentDistance;
+
+                    pinchLastMidX =
+                        currentMidpoint.x;
+
+                    pinchLastMidY =
+                        currentMidpoint.y;
+
+                    updateImage();
+
+                    return;
+
+                }
+
+
+                /*
+                   PAN / GESER GAMBAR
+                   Aktif kalau zoom lebih dari 100%.
+                */
+                if (
+                    touchMode === "pan" &&
+                    event.touches.length === 1 &&
+                    zoom > 1
+                ) {
+
+                    event.preventDefault();
+
+                    positionX =
+                        panPositionStartX
+                        +
+                        (
+                            event.touches[0].clientX
+                            -
+                            panTouchStartX
+                        );
+
+                    positionY =
+                        panPositionStartY
+                        +
+                        (
+                            event.touches[0].clientY
+                            -
+                            panTouchStartY
+                        );
+
+                    updateImage();
+
+                    return;
+
+                }
+
+
+                /*
+                   SWIPE gallery hanya saat 100%.
+                */
+                if (
+                    touchMode === "swipe" &&
+                    event.touches.length === 1 &&
+                    zoom === 1
+                ) {
+
+                    touchEndX =
+                        event.touches[0].clientX;
+
+                }
+
+            },
+            {
+                passive: false
+            }
+        );
+
+
+        imageWrapper.addEventListener(
+            "touchend",
+            function(event) {
+
+                /*
+                   Setelah pinch dan tersisa satu jari,
+                   langsung lanjut menjadi mode PAN
+                   supaya gerak terasa natural.
+                */
+                if (
+                    touchMode === "pinch" &&
+                    event.touches.length === 1 &&
+                    zoom > 1
+                ) {
+
+                    touchMode = "pan";
+
+                    panTouchStartX =
+                        event.touches[0].clientX;
+
+                    panTouchStartY =
+                        event.touches[0].clientY;
+
+                    panPositionStartX =
+                        positionX;
+
+                    panPositionStartY =
+                        positionY;
+
+                    return;
+
+                }
+
+
+                /*
+                   Swipe foto hanya diproses kalau
+                   tidak sedang zoom.
+                */
+                if (
+                    touchMode === "swipe" &&
+                    event.touches.length === 0 &&
+                    zoom === 1 &&
+                    currentGallery.length > 1
+                ) {
+
+                    const distance =
+                        touchEndX - touchStartX;
+
+                    if (Math.abs(distance) >= 45) {
+
+                        if (distance < 0) {
+                            moveGallery(1);
+                        } else {
+                            moveGallery(-1);
+                        }
+
+                    }
+
+                }
+
+
+                if (event.touches.length === 0) {
+
+                    touchMode = "none";
+
+                }
+
+            },
+            {
+                passive: false
+            }
+        );
+
+
+        imageWrapper.addEventListener(
+            "touchcancel",
+            function() {
+
+                touchMode = "none";
+
+            },
+            {
+                passive: true
+            }
+        );
+
     </script>
 
+
+    <script src="js/reveal.js"></script>
 
 </body>
 

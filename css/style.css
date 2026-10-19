@@ -2005,68 +2005,85 @@ select {
     }
 
 
+    /* =====================================================
+       MOBILE NAVBAR HORIZONTAL
+       Tetap menyamping, lebih ke tengah, tidak nempel pojok kanan
+    ===================================================== */
+
     .menu-toggle {
-        display: block;
-
-        position: absolute;
-
-        right: 20px;
-        top: 50%;
-
-        transform: translateY(-50%);
-
-        z-index: 10002;
+        display: none !important;
     }
 
 
     .navbar .nav-menu {
-        position: absolute;
+        position: absolute !important;
 
-        left: 0;
-        top: 70px;
+        top: 50% !important;
 
-        width: 100%;
+        /*
+           Posisi dipatok ke layar HP, bukan ke sisi kanan container.
+           Hasilnya menu tetap horizontal tetapi lebih masuk ke tengah.
+        */
+        left: 50vw !important;
+        right: auto !important;
 
-        transform: none;
+        transform: translate(-41%, -50%) !important;
 
-        display: none;
+        width: auto !important;
+        max-width: calc(100vw - 145px) !important;
 
-        flex-direction: column;
+        display: flex !important;
+        flex-direction: row !important;
 
-        align-items: center;
+        align-items: center !important;
+        justify-content: center !important;
 
-        gap: 0;
+        gap: clamp(7px, 1.9vw, 12px) !important;
 
-        padding: 12px 20px 18px;
+        margin: 0 !important;
+        padding: 0 !important;
 
-        background: #f7f3eb;
+        background: transparent !important;
 
-        border-top: 1px solid rgba(0,0,0,0.04);
+        border: none !important;
+        box-shadow: none !important;
 
-        box-shadow:
-            0 10px 20px rgba(0,0,0,0.07);
+        white-space: nowrap !important;
+
+        z-index: 10000;
     }
 
 
     .navbar .nav-menu.active {
-        display: flex;
+        display: flex !important;
     }
 
 
     .navbar .nav-menu a {
-        width: 100%;
+        width: auto !important;
 
-        padding: 12px 5px;
+        margin: 0 !important;
+        padding: 8px 0 !important;
 
-        text-align: center;
+        text-align: center !important;
+
+        font-size: clamp(9px, 2.35vw, 11px) !important;
+        font-weight: 600;
+
+        text-transform: uppercase !important;
+        letter-spacing: 0.04em;
+
+        white-space: nowrap !important;
+
+        line-height: 1.2;
     }
 
 
     .navbar .nav-menu a.active::after {
-        left: 43%;
-        right: 43%;
+        left: 15%;
+        right: 15%;
 
-        bottom: 3px;
+        bottom: 1px;
     }
 
 
@@ -2588,3 +2605,1091 @@ select {
         top: 84px;
     }
 }
+
+/* =========================================================
+   MOBILE NAVBAR FINAL FIX
+   Menu tetap satu baris seperti desktop, tanpa dropdown
+========================================================= */
+@media (max-width: 768px) {
+    .navbar,
+    .navbar .nav-container,
+    .nav-container {
+        height: 104px !important;
+    }
+
+    .navbar .nav-container .brand-logo {
+        left: 10px !important;
+        top: 50% !important;
+        width: 88px !important;
+        height: 88px !important;
+        transform: translateY(-50%) !important;
+    }
+
+    .navbar .menu-toggle,
+    .menu-toggle {
+        display: none !important;
+    }
+
+    .navbar .nav-menu {
+        position: absolute !important;
+        left: 108px !important;
+        right: 10px !important;
+        top: 50% !important;
+        width: auto !important;
+        height: auto !important;
+        transform: translateY(-50%) !important;
+
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: center !important;
+        justify-content: flex-end !important;
+
+        gap: 10px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+
+        background: transparent !important;
+        border: 0 !important;
+        box-shadow: none !important;
+        white-space: nowrap !important;
+    }
+
+    .navbar .nav-menu a {
+        width: auto !important;
+        padding: 8px 0 !important;
+        margin: 0 !important;
+        font-size: 10px !important;
+        line-height: 1.2 !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+    }
+
+    .navbar .nav-menu a.active::after {
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 2px !important;
+    }
+}
+
+@media (max-width: 420px) {
+    .navbar .nav-container .brand-logo {
+        left: 8px !important;
+        width: 82px !important;
+        height: 82px !important;
+    }
+
+    .navbar .nav-menu {
+        left: 98px !important;
+        right: 8px !important;
+        gap: 7px !important;
+    }
+
+    .navbar .nav-menu a {
+        font-size: 9px !important;
+    }
+}
+
+
+/* =========================================================
+   NAVBAR LUXURY MICRO-INTERACTION
+   FINAL OVERRIDE - aman untuk semua halaman
+========================================================= */
+
+@media (min-width: 769px) {
+    .navbar .nav-menu {
+        gap: 12px;
+    }
+
+    .navbar .nav-menu a {
+        position: relative;
+        padding: 10px 14px;
+        border: 1px solid transparent;
+        border-radius: 2px;
+        color: #30241c;
+        font-size: 12px;
+        font-weight: 600;
+        letter-spacing: 0.45px;
+        transition:
+            color 0.24s ease,
+            background 0.24s ease,
+            border-color 0.24s ease,
+            transform 0.24s ease,
+            box-shadow 0.24s ease;
+    }
+
+    .navbar .nav-menu a::before {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: 4px;
+        width: calc(100% - 28px);
+        height: 1px;
+        background: #9b7048;
+        transform: translateX(-50%) scaleX(0);
+        transform-origin: center;
+        transition: transform 0.24s ease;
+    }
+
+    .navbar .nav-menu a:hover {
+        color: #7f5837;
+        background: rgba(155, 112, 72, 0.055);
+        border-color: rgba(155, 112, 72, 0.18);
+        transform: translateY(-1px);
+    }
+
+    .navbar .nav-menu a:hover::before,
+    .navbar .nav-menu a.active::before {
+        transform: translateX(-50%) scaleX(1);
+    }
+
+    .navbar .nav-menu a.active {
+        color: #8f633e;
+        background: rgba(155, 112, 72, 0.075);
+        border-color: rgba(155, 112, 72, 0.20);
+        box-shadow: inset 0 -1px 0 rgba(155, 112, 72, 0.18);
+    }
+
+    /* Matikan garis active lama supaya tidak dobel. */
+    .navbar .nav-menu a.active::after {
+        display: none;
+    }
+}
+
+/* Mobile tetap ringkas agar 4 menu muat satu baris. */
+@media (max-width: 768px) {
+    .navbar .nav-menu a {
+        border: 0 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        letter-spacing: 0 !important;
+        transform: none !important;
+    }
+
+    .navbar .nav-menu a::before {
+        display: none !important;
+    }
+
+    .navbar .nav-menu a.active {
+        color: #9b7048 !important;
+    }
+}
+
+/* =========================================================
+   RAHMAT JEPARA — HOME INSPIRASI TEST
+   File ini hanya menambah gaya untuk Home baru.
+   style.css utama TIDAK perlu diubah untuk test ini.
+========================================================= */
+
+.home-inspirasi-page {
+    background: var(--cream);
+}
+
+.inspiration-hero {
+    min-height: 560px;
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.35fr);
+    background: linear-gradient(90deg, #f5f0e7 0%, #f5f0e7 42%, #eee3d5 100%);
+    overflow: hidden;
+}
+
+.inspiration-hero-copy {
+    padding: 88px 40px 80px max(7vw, 48px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.inspiration-hero-copy h1 {
+    margin: 12px 0 24px;
+    max-width: 560px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(52px, 5.6vw, 84px);
+    line-height: 0.95;
+    font-weight: 400;
+    letter-spacing: -2px;
+    color: var(--brown-dark);
+}
+
+.inspiration-hero-copy h1 strong {
+    display: block;
+    font-weight: 400;
+}
+
+.inspiration-hero-copy h1 span {
+    display: block;
+    margin-top: 18px;
+    font-size: 0.56em;
+    line-height: 1.05;
+    font-style: italic;
+    font-weight: 400;
+    letter-spacing: -1px;
+    color: var(--brown-light);
+}
+
+.inspiration-intro {
+    max-width: 540px;
+    color: var(--text-light);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.hero-signature {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 34px;
+}
+
+.hero-signature span {
+    width: 42px;
+    height: 1px;
+    background: var(--brown-light);
+}
+
+.hero-signature p {
+    max-width: 170px;
+    color: #8a694e;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 12px;
+    line-height: 1.4;
+    letter-spacing: 1.6px;
+    text-transform: uppercase;
+}
+
+.inspiration-hero-visual {
+    position: relative;
+    min-height: 560px;
+    overflow: hidden;
+}
+
+.inspiration-hero-visual::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 160px;
+    z-index: 1;
+    background: linear-gradient(90deg, #f5f0e7 0%, rgba(245, 240, 231, 0.84) 38%, rgba(245, 240, 231, 0) 100%);
+    pointer-events: none;
+}
+
+.inspiration-hero-visual img {
+    width: 100%;
+    height: 100%;
+    min-height: 560px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    transition: transform 0.8s ease;
+}
+
+.inspiration-hero-visual:hover img {
+    transform: scale(1.018);
+}
+
+.hero-room-label {
+    position: absolute;
+    right: 34px;
+    bottom: 30px;
+    z-index: 2;
+    max-width: 330px;
+    padding: 14px 18px;
+    background: rgba(40, 26, 18, 0.82);
+    color: #fff8ee;
+    backdrop-filter: blur(4px);
+}
+
+.hero-room-label small {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    color: #dfbf91;
+}
+
+.hero-room-label strong {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.room-gallery-section {
+    padding: 78px max(7vw, 48px) 92px;
+    background: var(--cream-light);
+}
+
+.room-heading {
+    align-items: flex-end;
+}
+
+.room-heading h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(38px, 4vw, 58px);
+    font-weight: 400;
+    color: var(--brown-dark);
+}
+
+.room-heading-copy {
+    max-width: 430px;
+    color: var(--text-light);
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+.room-style-tabs {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 34px 0 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.room-tab {
+    padding: 10px 16px;
+    border: 1px solid #ccbba7;
+    background: transparent;
+    color: #66564a;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1.3px;
+    cursor: pointer;
+    transition: 0.25s ease;
+}
+
+.room-tab:hover,
+.room-tab.active {
+    border-color: var(--brown-dark);
+    background: var(--brown-dark);
+    color: white;
+}
+
+.room-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 14px;
+}
+
+.room-card {
+    min-width: 0;
+    background: #f8f4ed;
+    border: 1px solid #e8ded0;
+    transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+
+.room-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 14px 34px rgba(57, 38, 26, 0.09);
+}
+
+.room-card.room-hidden {
+    display: none;
+}
+
+.room-card-image {
+    position: relative;
+    height: 185px;
+    overflow: hidden;
+    background: #e8dece;
+}
+
+.room-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.45s ease;
+}
+
+.room-card:hover .room-card-image img {
+    transform: scale(1.035);
+}
+
+.room-tone {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 8px 11px;
+    background: rgba(247, 243, 235, 0.94);
+    color: #8b6240;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.room-card-body {
+    padding: 18px 16px 20px;
+}
+
+.room-card-body > p {
+    margin-bottom: 8px;
+    color: #a0754d;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.room-card-body h3 {
+    min-height: 54px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 18px;
+    line-height: 1.25;
+    font-weight: 400;
+    color: var(--brown-dark);
+}
+
+.room-card-body span {
+    display: block;
+    margin-top: 10px;
+    color: var(--text-light);
+    font-size: 12px;
+    line-height: 1.6;
+}
+
+.room-gallery-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 28px;
+}
+
+.room-philosophy {
+    display: grid;
+    grid-template-columns: 130px minmax(0, 1fr);
+    gap: 34px;
+    padding: 78px max(7vw, 48px);
+    background: var(--cream);
+    border-top: 1px solid #eadfce;
+    border-bottom: 1px solid #eadfce;
+}
+
+.room-philosophy-number {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 72px;
+    line-height: 1;
+    color: #d7c3a6;
+}
+
+.room-philosophy-content {
+    max-width: 850px;
+}
+
+.room-philosophy-content h2 {
+    margin: 8px 0 16px;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(34px, 4vw, 54px);
+    line-height: 1.05;
+    font-weight: 400;
+    color: var(--brown-dark);
+}
+
+.room-philosophy-content h2 span {
+    color: var(--brown-light);
+    font-style: italic;
+}
+
+.room-philosophy-content > p:last-child {
+    max-width: 690px;
+    color: var(--text-light);
+    line-height: 1.8;
+}
+
+.why-brand-logo {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-top: 24px;
+}
+
+.why-brand-logo img {
+    width: 230px;
+    max-width: 48%;
+    height: auto;
+    object-fit: contain;
+}
+
+@media (max-width: 1100px) {
+    .room-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 900px) {
+    .inspiration-hero {
+        grid-template-columns: 1fr;
+    }
+
+    .inspiration-hero-copy {
+        padding: 58px 7% 46px;
+    }
+
+    .inspiration-hero-copy h1 {
+        font-size: clamp(48px, 11vw, 70px);
+    }
+
+    .inspiration-hero-visual,
+    .inspiration-hero-visual img {
+        min-height: 430px;
+    }
+
+    .inspiration-hero-visual::before {
+        inset: 0;
+        width: 100%;
+        height: 100px;
+        background: linear-gradient(180deg, #f5f0e7 0%, rgba(245, 240, 231, 0) 100%);
+    }
+
+    .room-gallery-section {
+        padding: 64px 6% 78px;
+    }
+
+    .room-heading {
+        align-items: flex-start;
+        gap: 18px;
+    }
+
+    .room-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .room-philosophy {
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 62px 6%;
+    }
+
+    .room-philosophy-number {
+        font-size: 48px;
+    }
+}
+
+@media (max-width: 600px) {
+    .inspiration-hero-copy {
+        padding: 44px 5% 34px;
+    }
+
+    .inspiration-hero-copy h1 {
+        font-size: 46px;
+        letter-spacing: -1px;
+    }
+
+    .inspiration-intro {
+        font-size: 14px;
+    }
+
+    .inspiration-hero-visual,
+    .inspiration-hero-visual img {
+        min-height: 340px;
+    }
+
+    .hero-room-label {
+        right: 16px;
+        bottom: 16px;
+        left: 16px;
+        max-width: none;
+    }
+
+    .room-gallery-section {
+        padding: 54px 5% 68px;
+    }
+
+    .room-style-tabs {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .room-style-tabs::-webkit-scrollbar {
+        display: none;
+    }
+
+    .room-tab {
+        flex: 0 0 auto;
+    }
+
+    .room-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .room-card-image {
+        height: 230px;
+    }
+
+    .room-card-body h3 {
+        min-height: auto;
+        font-size: 21px;
+    }
+
+    .room-gallery-footer {
+        justify-content: flex-start;
+    }
+}
+
+
+/* =========================================================
+   HOME GALLERY — EDITORIAL BENTO + HD LIGHTBOX
+========================================================= */
+
+.room-grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    grid-auto-flow: dense;
+    gap: 18px;
+}
+
+.room-card {
+    position: relative;
+    overflow: hidden;
+    min-height: 320px;
+    background: #f7f1e8;
+    cursor: pointer;
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.room-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 38px rgba(53, 34, 21, .12);
+}
+
+.room-card:nth-child(1) {
+    grid-column: span 6;
+    grid-row: auto;
+    min-height:0;
+    min-height: 500px;
+}
+
+.room-card:nth-child(2),
+.room-card:nth-child(3) {
+    grid-column: span 5;
+    min-height: 316px;
+}
+
+.room-card:nth-child(4),
+.room-card:nth-child(5),
+.room-card:nth-child(6) {
+    grid-column: span 4;
+    min-height: 330px;
+}
+
+.room-card-image {
+    height: 68%;
+    min-height: 210px;
+}
+
+.room-card:nth-child(1) .room-card-image {
+    height: 430px;
+}
+
+.room-card-body {
+    position: relative;
+    z-index: 2;
+    background: #f7f1e8;
+}
+
+.room-card:nth-child(1) .room-card-body {
+    min-height:0;
+    padding: 24px 22px 28px;
+}
+
+.room-card:nth-child(1) .room-card-body h3 {
+    font-size: 28px;
+}
+
+.room-card:focus-visible {
+    outline: 2px solid var(--brown-light);
+    outline-offset: 4px;
+}
+
+body.lightbox-open {
+    overflow: hidden;
+}
+
+.home-lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 28px;
+}
+
+.home-lightbox.open {
+    display: flex;
+}
+
+.home-lightbox-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(24, 16, 11, .86);
+    backdrop-filter: blur(8px);
+}
+
+.home-lightbox-dialog {
+    position: relative;
+    z-index: 1;
+    width: min(1320px, 96vw);
+    max-height: 92vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-lightbox-figure {
+    width: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-lightbox-figure img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    max-height: calc(92vh - 88px);
+    object-fit: contain;
+    background: #1f1712;
+    box-shadow: 0 28px 90px rgba(0, 0, 0, .35);
+}
+
+.home-lightbox-figure figcaption {
+    width: 100%;
+    max-width: 100%;
+    padding: 16px 20px;
+    background: #f5efe6;
+    color: var(--brown-dark);
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 19px;
+    text-align: center;
+}
+
+.home-lightbox-close,
+.home-lightbox-nav {
+    position: absolute;
+    z-index: 3;
+    border: 1px solid rgba(255,255,255,.25);
+    background: rgba(35, 24, 18, .72);
+    color: #fff;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+}
+
+.home-lightbox-close {
+    top: 14px;
+    right: 14px;
+    width: 46px;
+    height: 46px;
+    font-size: 29px;
+    line-height: 1;
+}
+
+.home-lightbox-nav {
+    top: 50%;
+    width: 48px;
+    height: 64px;
+    transform: translateY(-50%);
+    font-size: 38px;
+}
+
+.home-lightbox-prev { left: 14px; }
+.home-lightbox-next { right: 14px; }
+
+.home-lightbox-counter {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    z-index: 3;
+    padding: 9px 12px;
+    background: rgba(35, 24, 18, .72);
+    color: #fff;
+    font-size: 11px;
+    letter-spacing: 1px;
+}
+
+@media (max-width: 980px) {
+    .room-card:nth-child(n) {
+        grid-column: span 6;
+        grid-row: auto;
+        min-height: 360px;
+    }
+
+    .room-card:nth-child(1) {
+        grid-column: span 12;
+        min-height: 540px;
+    }
+}
+
+@media (max-width: 600px) {
+    .room-grid {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .room-card:nth-child(n) {
+        grid-column: 1;
+        min-height: auto;
+    }
+
+    .room-card-image,
+    .room-card:nth-child(1) .room-card-image {
+        height: 245px;
+        min-height: 245px;
+    }
+
+    .home-lightbox {
+        padding: 0;
+    }
+
+    .home-lightbox-dialog {
+        width: 100vw;
+        max-height: 100dvh;
+    }
+
+    .home-lightbox-figure img {
+        max-height: calc(100dvh - 72px);
+    }
+
+    .home-lightbox-figure figcaption {
+        font-size: 16px;
+        padding: 14px 60px;
+    }
+
+    .home-lightbox-nav {
+        width: 42px;
+        height: 58px;
+        font-size: 32px;
+    }
+
+    .home-lightbox-prev { left: 8px; }
+    .home-lightbox-next { right: 8px; }
+
+    .home-lightbox-close {
+        top: 8px;
+        right: 8px;
+    }
+
+    .home-lightbox-counter {
+        left: 8px;
+        top: 8px;
+    }
+}
+
+
+
+/* =====================================================
+   EXTRA SMALL PHONE NAVBAR SAFETY
+   Tetap horizontal, hanya sedikit lebih rapat.
+===================================================== */
+
+@media (max-width: 390px) {
+    .navbar .nav-menu {
+        left: 50vw !important;
+        transform: translate(-43%, -50%) !important;
+        max-width: calc(100vw - 125px) !important;
+        gap: 6px !important;
+    }
+
+    .navbar .nav-menu a {
+        font-size: 8.7px !important;
+        padding: 7px 0 !important;
+    }
+}
+
+@media (max-width: 350px) {
+    .navbar .nav-menu {
+        transform: translate(-45%, -50%) !important;
+        gap: 5px !important;
+    }
+
+    .navbar .nav-menu a {
+        font-size: 8px !important;
+    }
+}
+
+/* =========================================================
+   SMOOTH SCROLL REVEAL — SOFTER VERSION
+   Lebih pelan, trigger lebih awal, gerakan lebih pendek.
+========================================================= */
+
+.reveal-item {
+    opacity: 0;
+    translate: 0 10px;
+
+    transition-property: opacity, translate;
+    transition-duration: 980ms, 980ms;
+    transition-timing-function:
+        cubic-bezier(.16, 1, .3, 1),
+        cubic-bezier(.16, 1, .3, 1);
+
+    transition-delay: var(--reveal-delay, 0ms);
+
+    will-change: opacity, translate;
+}
+
+.reveal-item.is-visible {
+    opacity: 1;
+    translate: 0 0;
+}
+
+/* Heading lebih lembut lagi */
+.products-header.reveal-item,
+.section-heading.reveal-item,
+.room-heading.reveal-item,
+.hero.reveal-item,
+.hero-section.reveal-item {
+    translate: 0 7px;
+}
+
+.products-header.reveal-item.is-visible,
+.section-heading.reveal-item.is-visible,
+.room-heading.reveal-item.is-visible,
+.hero.reveal-item.is-visible,
+.hero-section.reveal-item.is-visible {
+    translate: 0 0;
+}
+
+/* Card bergerak pendek supaya tidak terasa "meloncat" */
+.product-card.reveal-item,
+.room-card.reveal-item {
+    translate: 0 9px;
+}
+
+.product-card.reveal-item.is-visible,
+.room-card.reveal-item.is-visible {
+    translate: 0 0;
+}
+
+/* Tablet / HP dibuat lebih ringan */
+@media (max-width: 768px) {
+    .reveal-item {
+        translate: 0 7px;
+        transition-duration: 850ms, 850ms;
+    }
+
+    .product-card.reveal-item,
+    .room-card.reveal-item {
+        translate: 0 6px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .reveal-item {
+        opacity: 1 !important;
+        translate: none !important;
+        transition: none !important;
+    }
+}
+
+/* =========================================================
+   HOME GALLERY — DESKTOP WIDTH BALANCE FIX
+   Hanya mengisi kolom kosong di kanan.
+   Tidak mengubah mobile, lightbox, reveal, navbar, atau Produk.
+========================================================= */
+
+@media (min-width: 981px) {
+    .home-inspirasi-page .room-grid {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        grid-auto-flow: row;
+        width: 100%;
+    }
+
+    /* Baris 1: highlight + pendamping = penuh 12 kolom */
+    .home-inspirasi-page .room-card:nth-child(1) {
+        grid-column: span 7;
+        grid-row: auto;
+    }
+
+    .home-inspirasi-page .room-card:nth-child(2) {
+        grid-column: span 5;
+        grid-row: auto;
+    }
+
+    /* Baris 2 */
+    .home-inspirasi-page .room-card:nth-child(3),
+    .home-inspirasi-page .room-card:nth-child(4) {
+        grid-column: span 6;
+        grid-row: auto;
+    }
+
+    /* Baris 3 */
+    .home-inspirasi-page .room-card:nth-child(5),
+    .home-inspirasi-page .room-card:nth-child(6) {
+        grid-column: span 6;
+        grid-row: auto;
+    }
+}
+
+/* =========================================================
+   NAVBAR PREMIUM JEPARA — OPSI 2
+   Garis tipis elegan atas/bawah + aksen active coklat-gold.
+   Desktop dibuat lebih mewah, mobile tetap aman dan ringkas.
+========================================================= */
+
+.navbar {
+    position: relative;
+    background: #f7f2e9;
+}
+
+@media (min-width: 769px) {
+    .navbar::before,
+    .navbar::after {
+        content: "";
+        position: absolute;
+        left: clamp(245px, 24vw, 390px);
+        right: clamp(65px, 18vw, 300px);
+        height: 1px;
+        z-index: 2;
+        pointer-events: none;
+        background: linear-gradient(90deg, rgba(73,49,31,0) 0%, rgba(73,49,31,.38) 12%, rgba(164,116,69,.72) 50%, rgba(73,49,31,.38) 88%, rgba(73,49,31,0) 100%);
+    }
+
+    .navbar::before { top: 31px; }
+    .navbar::after { bottom: 31px; }
+
+    .navbar .nav-menu { z-index: 3; }
+    .navbar .nav-menu a { position: relative; }
+
+    .navbar .nav-menu a::before {
+        height: 1.5px;
+        background: linear-gradient(90deg, rgba(155,112,72,0), #a87546 22%, #8c5c36 50%, #a87546 78%, rgba(155,112,72,0));
+    }
+
+    .navbar .nav-menu a.active {
+        color: #8c5c36;
+        background: rgba(155,112,72,.06);
+        border-color: rgba(155,112,72,.18);
+        box-shadow: 0 5px 14px rgba(60,38,23,.035), inset 0 -1px 0 rgba(155,112,72,.10);
+    }
+
+    .navbar .nav-menu a:hover {
+        color: #7d5130;
+        background: rgba(155,112,72,.045);
+        border-color: rgba(155,112,72,.14);
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar::before { display: none !important; }
+
+    .navbar::after {
+        content: "";
+        position: absolute;
+        left: 12px;
+        right: 12px;
+        bottom: 0;
+        height: 1px;
+        display: block !important;
+        pointer-events: none;
+        background: linear-gradient(90deg, rgba(155,112,72,0), rgba(155,112,72,.34) 16%, rgba(155,112,72,.48) 50%, rgba(155,112,72,.34) 84%, rgba(155,112,72,0));
+    }
+
+    .navbar .nav-menu a.active { color: #94633d !important; }
+    .navbar .nav-menu a.active::after {
+        background: #a87546 !important;
+        height: 2px !important;
+    }
+}
+

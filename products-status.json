@@ -1,0 +1,85 @@
+{
+  "updated_at": null,
+  "products": {
+    "JT001": {
+      "koleksi": "KOLEKSI 01",
+      "stock": 1,
+      "status": "AVAILABLE"
+    },
+    "JT002": {
+      "koleksi": "KOLEKSI 02",
+      "stock": 1,
+      "status": "AVAILABLE"
+    },
+    "JT003": {
+      "koleksi": "KOLEKSI 03",
+      "stock": 1,
+      "status": "AVAILABLE"
+    },
+    "JT004": {
+      "koleksi": "KOLEKSI 04",
+      "stock": 1,
+      "status": "AVAILABLE"
+    },
+    "JT005": {
+      "koleksi": "KOLEKSI 05",
+      "stock": 1,
+      "status": "AVAILABLE"
+    },
+    "JT006": {
+      "koleksi": "KOLEKSI 06",
+      "stock": 1,
+      "status": "AVAILABLE"
+    },
+    "JT007": {
+      "koleksi": "KOLEKSI 07",
+      "stock": 1,
+      "status": "AVAILABLE"
+    },
+    "JT008": {
+      "koleksi": "KOLEKSI 08",
+      "stock": 2,
+      "status": "AVAILABLE"
+    },
+    "JT009": {
+      "koleksi": "KOLEKSI 09",
+      "stock": 1,
+      "status": "AVAILABLE"
+    },
+    "JT010": {
+      "koleksi": "KOLEKSI 10",
+      "stock": 2,
+      "status": "AVAILABLE"
+    },
+    "JT011": {
+      "koleksi": "KOLEKSI 11",
+      "stock": 1,
+      "status": "AVAILABLE"
+    },
+    "JT012": {
+      "koleksi": "KOLEKSI 12",
+      "stock": 1,
+      "status": "AVAILABLE"
+    },
+    "JT013": {
+      "koleksi": "KOLEKSI 13",
+      "stock": 1,
+      "status": "AVAILABLE"
+    },
+    "JT014": {
+      "koleksi": "KOLEKSI 14",
+      "stock": 1,
+      "status": "AVAILABLE"
+    },
+    "JT015": {
+      "koleksi": "KOLEKSI 15",
+      "stock": 1,
+      "status": "AVAILABLE"
+    },
+    "JT016": {
+      "koleksi": "KOLEKSI 16",
+      "stock": 1,
+      "status": "AVAILABLE"
+    }
+  }
+}

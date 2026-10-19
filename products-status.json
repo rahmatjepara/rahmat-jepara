@@ -1,10 +1,10 @@
 {
-  "updated_at": null,
+  "updated_at": "2026-10-19T10:38:50.280721+00:00",
   "products": {
     "JT001": {
       "koleksi": "KOLEKSI 01",
-      "stock": 1,
-      "status": "AVAILABLE"
+      "stock": 0,
+      "status": "SOLD OUT"
     },
     "JT002": {
       "koleksi": "KOLEKSI 02",

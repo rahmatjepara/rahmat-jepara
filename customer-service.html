@@ -175,6 +175,62 @@
             transform: translateY(-2px);
         }
 
+
+
+        /* ==============================
+           WARRANTY CHECK
+        ============================== */
+
+        .warranty-box {
+            display: none;
+            margin-top: 10px;
+            padding: 18px;
+            border: 1px solid #e0d4c7;
+            border-radius: 12px;
+            background: #fbf8f3;
+        }
+
+        .warranty-box.show {
+            display: block;
+        }
+
+        .warranty-check-row {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+        }
+
+        .warranty-check-button {
+            border: none;
+            padding: 0 18px;
+            border-radius: 9px;
+            background: #8b5e3c;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .warranty-result {
+            display: none;
+            margin-top: 14px;
+            padding: 14px;
+            border-radius: 10px;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .warranty-result.show { display: block; }
+        .warranty-result.active { background: #eaf8ee; color: #176b2d; border: 1px solid #b9e6c4; }
+        .warranty-result.expired { background: #fff5e5; color: #8a5a00; border: 1px solid #f0d09a; }
+        .warranty-result.invalid { background: #fdecec; color: #a52222; border: 1px solid #efbaba; }
+
+        .warranty-note {
+            margin-top: 8px;
+            color: #777;
+            font-size: 12px;
+            line-height: 1.5;
+        }
+
         /* ==============================
            MOBILE
         ============================== */
@@ -228,7 +284,7 @@
 
             </nav>
 
-            <button class="menu-toggle" id="menuToggle">
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Buka menu navigasi" aria-expanded="false">
                 ☰
             </button>
 
@@ -408,6 +464,10 @@
                                         Keluhan Produk
                                     </option>
 
+                                    <option value="Claim Garansi">
+                                        Claim Garansi
+                                    </option>
+
                                     <option value="Permintaan Perbaikan">
                                         Permintaan Perbaikan
                                     </option>
@@ -421,6 +481,45 @@
                                     </option>
 
                                 </select>
+
+                            </div>
+
+
+                            <!-- Claim Garansi -->
+
+                            <div class="warranty-box" id="warrantyBox">
+
+                                <div class="form-group" style="margin-bottom: 0;">
+
+                                    <label for="warrantyCode">
+                                        KODE GARANSI
+                                    </label>
+
+                                    <div class="warranty-check-row">
+                                        <input
+                                            type="text"
+                                            id="warrantyCode"
+                                            name="warrantyCode"
+                                            placeholder="Contoh: RJ-JT001-8K29X"
+                                            autocomplete="off"
+                                        >
+
+                                        <button
+                                            type="button"
+                                            class="warranty-check-button"
+                                            id="checkWarrantyButton"
+                                        >
+                                            CEK GARANSI
+                                        </button>
+                                    </div>
+
+                                    <p class="warranty-note">
+                                        Kode garansi aktif selama 12 bulan sejak tanggal aktivasi.
+                                    </p>
+
+                                    <div class="warranty-result" id="warrantyResult"></div>
+
+                                </div>
 
                             </div>
 
@@ -561,6 +660,125 @@
         ============================== */
 
         const form = document.getElementById("customerServiceForm");
+        const jenisSelect = document.getElementById("jenis");
+        const warrantyBox = document.getElementById("warrantyBox");
+        const warrantyCodeInput = document.getElementById("warrantyCode");
+        const warrantyResult = document.getElementById("warrantyResult");
+        const checkWarrantyButton = document.getElementById("checkWarrantyButton");
+
+        let verifiedWarranty = null;
+
+        function resetWarrantyResult() {
+            verifiedWarranty = null;
+            warrantyResult.className = "warranty-result";
+            warrantyResult.innerHTML = "";
+        }
+
+        function showWarrantyResult(type, html) {
+            warrantyResult.className = "warranty-result show " + type;
+            warrantyResult.innerHTML = html;
+        }
+
+        function formatDateIndonesia(dateString) {
+            const parts = dateString.split("-");
+            if (parts.length !== 3) return dateString;
+            return `${parts[2]}-${parts[1]}-${parts[0]}`;
+        }
+
+        jenisSelect.addEventListener("change", function () {
+            const isWarranty = this.value === "Claim Garansi";
+            warrantyBox.classList.toggle("show", isWarranty);
+            warrantyCodeInput.required = isWarranty;
+            if (!isWarranty) resetWarrantyResult();
+        });
+
+        warrantyCodeInput.addEventListener("input", function () {
+            this.value = this.value.toUpperCase().replace(/\s+/g, "");
+            resetWarrantyResult();
+        });
+
+        checkWarrantyButton.addEventListener("click", async function () {
+            const code = warrantyCodeInput.value.trim().toUpperCase();
+
+            if (!code) {
+                showWarrantyResult("invalid", "❌ Masukkan kode garansi terlebih dahulu.");
+                return;
+            }
+
+            checkWarrantyButton.disabled = true;
+            checkWarrantyButton.textContent = "MENGECEK...";
+            resetWarrantyResult();
+
+            try {
+                const response = await fetch("warranties.json?v=" + Date.now(), { cache: "no-store" });
+                if (!response.ok) throw new Error("HTTP " + response.status);
+
+                const data = await response.json();
+                const record = (data.warranties || {})[code];
+
+                if (!record || record.cancelled === true) {
+                    showWarrantyResult(
+                        "invalid",
+                        "❌ <strong>KODE GARANSI TIDAK VALID</strong><br>Kode tidak ditemukan atau sudah dinonaktifkan."
+                    );
+                    return;
+                }
+
+                const today = new Date();
+                today.setHours(0, 0, 0, 0);
+                const expires = new Date(record.expires_at + "T23:59:59");
+
+                if (Number.isNaN(expires.getTime())) {
+                    showWarrantyResult("invalid", "❌ Data garansi tidak valid. Silakan hubungi Rahmat Jepara.");
+                    return;
+                }
+
+                if (today <= expires) {
+                    verifiedWarranty = {
+                        code,
+                        productCode: record.product_code,
+                        activatedAt: record.activated_at,
+                        expiresAt: record.expires_at,
+                        status: "ACTIVE"
+                    };
+
+                    document.getElementById("produk").value = record.product_code || document.getElementById("produk").value;
+
+                    showWarrantyResult(
+                        "active",
+                        `✅ <strong>GARANSI AKTIF</strong><br>` +
+                        `Produk: ${record.product_code || "-"}<br>` +
+                        `Mulai: ${formatDateIndonesia(record.activated_at)}<br>` +
+                        `Berakhir: ${formatDateIndonesia(record.expires_at)}`
+                    );
+                } else {
+                    verifiedWarranty = {
+                        code,
+                        productCode: record.product_code,
+                        activatedAt: record.activated_at,
+                        expiresAt: record.expires_at,
+                        status: "EXPIRED"
+                    };
+
+                    showWarrantyResult(
+                        "expired",
+                        `⚠️ <strong>GARANSI SUDAH BERAKHIR</strong><br>` +
+                        `Produk: ${record.product_code || "-"}<br>` +
+                        `Berakhir: ${formatDateIndonesia(record.expires_at)}<br>` +
+                        `Silakan pilih <strong>Permintaan Perbaikan</strong> untuk layanan berbayar.`
+                    );
+                }
+            } catch (error) {
+                console.error(error);
+                showWarrantyResult(
+                    "invalid",
+                    "❌ Sistem garansi sedang tidak dapat diakses. Silakan coba lagi atau hubungi WhatsApp Rahmat Jepara."
+                );
+            } finally {
+                checkWarrantyButton.disabled = false;
+                checkWarrantyButton.textContent = "CEK GARANSI";
+            }
+        });
 
         form.addEventListener("submit", function (event) {
 
@@ -582,6 +800,29 @@
             const pesan =
                 document.getElementById("pesan").value.trim();
 
+            let warrantyInfo = "";
+
+            if (jenis === "Claim Garansi") {
+                if (!verifiedWarranty) {
+                    alert("Silakan cek kode garansi terlebih dahulu.");
+                    warrantyCodeInput.focus();
+                    return;
+                }
+
+                if (verifiedWarranty.status !== "ACTIVE") {
+                    alert("Garansi sudah berakhir. Silakan pilih Permintaan Perbaikan untuk layanan berbayar.");
+                    return;
+                }
+
+                warrantyInfo = `
+
+*GARANSI*
+Kode Garansi: ${verifiedWarranty.code}
+Status: ACTIVE
+Mulai: ${verifiedWarranty.activatedAt}
+Berakhir: ${verifiedWarranty.expiresAt}`;
+            }
+
 
             const nomorWhatsApp = "6285362227009";
 
@@ -596,7 +837,7 @@ WhatsApp: ${whatsapp}
 *INFORMASI PRODUK*
 
 Produk: ${produk}
-Kebutuhan: ${jenis}
+Kebutuhan: ${jenis}${warrantyInfo}
 
 *DESKRIPSI / KELUHAN*
 
@@ -620,5 +861,6 @@ Terima kasih.`;
 
     </script>
 
+    <script src="js/script.js"></script>
 </body>
 </html>

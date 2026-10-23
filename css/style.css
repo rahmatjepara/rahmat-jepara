@@ -3693,3 +3693,668 @@ body.lightbox-open {
     }
 }
 
+
+
+/* =========================================================
+   2026 MOBILE NAVBAR CLARITY + LUXURY DRAWER
+   Menu horizontal tetap ada. Garis atas/bawah diperjelas,
+   tombol hamburger menjadi akses tambahan seperti referensi.
+========================================================= */
+.mobile-nav-overlay,
+.mobile-nav-drawer { display: none; }
+
+@media (max-width: 768px) {
+    body.mobile-nav-open { overflow: hidden; }
+
+    .navbar,
+    .navbar .nav-container,
+    .nav-container {
+        height: 116px !important;
+    }
+
+    .navbar {
+        border-top: 1px solid rgba(126, 84, 50, 0.22) !important;
+        border-bottom: 1px solid rgba(126, 84, 50, 0.26) !important;
+        box-shadow: 0 6px 20px rgba(45, 30, 20, 0.035) !important;
+    }
+
+    /* Dua garis mewah di area menu horizontal HP */
+    .navbar::before,
+    .navbar::after {
+        content: "" !important;
+        position: absolute !important;
+        left: 108px !important;
+        right: 48px !important;
+        height: 1px !important;
+        display: block !important;
+        pointer-events: none !important;
+        z-index: 2 !important;
+        background: linear-gradient(
+            90deg,
+            rgba(155,112,72,0),
+            rgba(155,112,72,.38) 12%,
+            rgba(155,112,72,.62) 50%,
+            rgba(155,112,72,.38) 88%,
+            rgba(155,112,72,0)
+        ) !important;
+    }
+
+    .navbar::before { top: 34px !important; }
+    .navbar::after  { bottom: 25px !important; }
+
+    .navbar .nav-container .brand-logo {
+        left: 9px !important;
+        width: 88px !important;
+        height: 88px !important;
+    }
+
+    /* Menu lama tetap kelihatan */
+    .navbar .nav-menu {
+        left: 108px !important;
+        right: 49px !important;
+        top: 58% !important;
+        gap: 9px !important;
+        justify-content: center !important;
+        z-index: 4 !important;
+    }
+
+    .navbar .nav-menu a {
+        font-size: 10px !important;
+        font-weight: 700 !important;
+        color: #33261e !important;
+        padding: 8px 0 !important;
+    }
+
+    .navbar .nav-menu a.active {
+        color: #8c5c36 !important;
+    }
+
+    /* Hamburger tambahan, tidak menggantikan menu */
+    .navbar .menu-toggle,
+    .menu-toggle {
+        display: flex !important;
+        position: absolute !important;
+        top: 8px !important;
+        right: 10px !important;
+        width: 38px !important;
+        height: 32px !important;
+        padding: 0 !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border: 1px solid rgba(104, 70, 43, 0.22) !important;
+        border-radius: 999px !important;
+        background: rgba(250,247,241,0.88) !important;
+        color: #39271c !important;
+        font-size: 21px !important;
+        line-height: 1 !important;
+        z-index: 10020 !important;
+        box-shadow: 0 5px 14px rgba(45,30,20,.06) !important;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+
+    .navbar .menu-toggle:active { transform: scale(.96); }
+
+    .mobile-nav-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 11000;
+        background: rgba(22, 16, 12, 0.44);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity .28s ease, visibility .28s ease;
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+    }
+
+    .mobile-nav-overlay.open {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .mobile-nav-drawer {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: min(82vw, 340px);
+        z-index: 11001;
+        padding: 22px 22px 28px;
+        flex-direction: column;
+        background: #f7f2e9;
+        border-right: 1px solid rgba(105,70,43,.16);
+        box-shadow: 22px 0 50px rgba(26,18,13,.16);
+        transform: translateX(-104%);
+        transition: transform .32s cubic-bezier(.22,.78,.23,1);
+    }
+
+    .mobile-nav-drawer.open { transform: translateX(0); }
+
+    .mobile-drawer-head {
+        min-height: 82px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 18px;
+        border-bottom: 1px solid rgba(128,85,50,.18);
+    }
+
+    .mobile-drawer-logo {
+        width: 92px;
+        height: 76px;
+        display: flex;
+        align-items: center;
+    }
+
+    .mobile-drawer-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .mobile-drawer-close {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 1px solid rgba(88,58,38,.18);
+        background: #fbf8f2;
+        color: #332219;
+        font-size: 28px;
+        line-height: 1;
+        cursor: pointer;
+    }
+
+    .mobile-drawer-links {
+        display: flex;
+        flex-direction: column;
+        margin-top: 24px;
+    }
+
+    .mobile-drawer-links a {
+        position: relative;
+        padding: 17px 4px;
+        border-bottom: 1px solid rgba(121,82,52,.13);
+        color: #2d211a;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: .7px;
+        text-transform: uppercase;
+    }
+
+    .mobile-drawer-links a::after {
+        content: "›";
+        position: absolute;
+        right: 4px;
+        color: #a87546;
+        font-size: 22px;
+        font-weight: 400;
+    }
+
+    .mobile-drawer-links a.active { color: #9b7048; }
+
+    .mobile-drawer-links a.active::before {
+        content: "";
+        position: absolute;
+        left: 4px;
+        bottom: 11px;
+        width: 38px;
+        height: 2px;
+        background: #a87546;
+    }
+
+    .mobile-drawer-foot {
+        margin-top: auto;
+        padding-top: 22px;
+        border-top: 1px solid rgba(121,82,52,.15);
+    }
+
+    .mobile-drawer-foot span {
+        display: block;
+        color: #3b291e;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 16px;
+        letter-spacing: 1.4px;
+    }
+
+    .mobile-drawer-foot small {
+        display: block;
+        margin-top: 5px;
+        color: #8f755f;
+        font-size: 9px;
+        letter-spacing: 1.1px;
+        text-transform: uppercase;
+    }
+}
+
+@media (max-width: 420px) {
+    .navbar::before,
+    .navbar::after {
+        left: 97px !important;
+        right: 45px !important;
+    }
+
+    .navbar .nav-menu {
+        left: 98px !important;
+        right: 45px !important;
+        gap: 6px !important;
+    }
+
+    .navbar .nav-menu a { font-size: 9px !important; }
+}
+
+@media (max-width: 360px) {
+    .navbar .nav-menu { gap: 4px !important; }
+    .navbar .nav-menu a { font-size: 8.4px !important; }
+}
+
+/* =========================================================
+   2026 NAV DRAWER — DESKTOP + MOBILE ACCESS
+   Hamburger menjadi akses tambahan di semua ukuran layar.
+========================================================= */
+@media (min-width: 769px) {
+    body.mobile-nav-open { overflow: hidden; }
+
+    .navbar .menu-toggle,
+    .menu-toggle {
+        display: flex !important;
+        position: absolute !important;
+        top: 50% !important;
+        right: 18px !important;
+        transform: translateY(-50%) !important;
+        width: 42px !important;
+        height: 42px !important;
+        padding: 0 !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border: 1px solid rgba(104,70,43,.20) !important;
+        border-radius: 999px !important;
+        background: rgba(250,247,241,.86) !important;
+        color: #39271c !important;
+        font-size: 23px !important;
+        line-height: 1 !important;
+        cursor: pointer !important;
+        z-index: 10020 !important;
+        box-shadow: 0 5px 16px rgba(45,30,20,.055) !important;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+
+    .navbar .menu-toggle:hover {
+        background: #fffaf3 !important;
+        border-color: rgba(104,70,43,.34) !important;
+    }
+
+    .mobile-nav-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 11000;
+        background: rgba(22,16,12,.42);
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity .28s ease, visibility .28s ease;
+        backdrop-filter: blur(2px);
+        -webkit-backdrop-filter: blur(2px);
+    }
+
+    .mobile-nav-overlay.open {
+        opacity: 1;
+        visibility: visible;
+    }
+
+    .mobile-nav-drawer {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 340px;
+        z-index: 11001;
+        padding: 26px 24px 30px;
+        flex-direction: column;
+        background: #f7f2e9;
+        border-right: 1px solid rgba(105,70,43,.16);
+        box-shadow: 22px 0 50px rgba(26,18,13,.16);
+        transform: translateX(-104%);
+        transition: transform .32s cubic-bezier(.22,.78,.23,1);
+    }
+
+    .mobile-nav-drawer.open { transform: translateX(0); }
+
+    .mobile-drawer-head {
+        min-height: 86px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 18px;
+        border-bottom: 1px solid rgba(128,85,50,.18);
+    }
+
+    .mobile-drawer-logo {
+        width: 98px;
+        height: 78px;
+        display: flex;
+        align-items: center;
+    }
+
+    .mobile-drawer-logo img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .mobile-drawer-close {
+        width: 42px;
+        height: 42px;
+        border-radius: 50%;
+        border: 1px solid rgba(88,58,38,.18);
+        background: #fbf8f2;
+        color: #332219;
+        font-size: 28px;
+        line-height: 1;
+        cursor: pointer;
+    }
+
+    .mobile-drawer-links {
+        display: flex;
+        flex-direction: column;
+        margin-top: 24px;
+    }
+
+    .mobile-drawer-links a {
+        position: relative;
+        padding: 17px 4px;
+        border-bottom: 1px solid rgba(121,82,52,.13);
+        color: #2d211a;
+        font-size: 14px;
+        font-weight: 700;
+        letter-spacing: .7px;
+        text-transform: uppercase;
+    }
+
+    .mobile-drawer-links a::after {
+        content: "›";
+        position: absolute;
+        right: 4px;
+        color: #a87546;
+        font-size: 22px;
+        font-weight: 400;
+    }
+
+    .mobile-drawer-links a.active { color: #9b7048; }
+
+    .mobile-drawer-links a.active::before {
+        content: "";
+        position: absolute;
+        left: 4px;
+        bottom: 11px;
+        width: 38px;
+        height: 2px;
+        background: #a87546;
+    }
+
+    .mobile-drawer-foot {
+        margin-top: auto;
+        padding-top: 22px;
+        border-top: 1px solid rgba(121,82,52,.15);
+    }
+
+    .mobile-drawer-foot span {
+        display: block;
+        color: #3b291e;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 16px;
+        letter-spacing: 1.4px;
+    }
+
+    .mobile-drawer-foot small {
+        display: block;
+        margin-top: 5px;
+        color: #8f755f;
+        font-size: 9px;
+        letter-spacing: 1.1px;
+        text-transform: uppercase;
+    }
+}
+
+
+/* =========================================================
+   UX FIX v3 — NAVBAR MOBILE + DRAWER HEADER
+   Definitive override: top row = brand/hamburger,
+   bottom row = horizontal navigation with luxury lines.
+========================================================= */
+.mobile-drawer-brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    min-width: 0;
+    color: #2d211a;
+    text-decoration: none;
+}
+
+.mobile-drawer-brand-title {
+    display: block;
+    white-space: nowrap;
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 2.2px;
+    color: #3a281d;
+}
+
+@media (max-width: 768px) {
+    .navbar,
+    .navbar .nav-container,
+    .nav-container {
+        height: 126px !important;
+    }
+
+    .navbar {
+        position: relative !important;
+        overflow: visible !important;
+        background: #f7f3eb !important;
+        border-top: 0 !important;
+        border-bottom: 1px solid rgba(126,84,50,.28) !important;
+        box-shadow: 0 7px 20px rgba(45,30,20,.035) !important;
+    }
+
+    /* Matikan garis pseudo versi lama supaya tidak bertabrakan. */
+    .navbar::before,
+    .navbar::after {
+        content: none !important;
+        display: none !important;
+    }
+
+    .navbar .nav-container .brand-logo,
+    .navbar .brand-logo {
+        position: absolute !important;
+        left: 14px !important;
+        top: 9px !important;
+        transform: none !important;
+        width: 92px !important;
+        height: 72px !important;
+        z-index: 7 !important;
+    }
+
+    .navbar .brand-logo img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: contain !important;
+    }
+
+    .navbar .menu-toggle,
+    .menu-toggle {
+        display: flex !important;
+        position: absolute !important;
+        top: 16px !important;
+        right: 14px !important;
+        left: auto !important;
+        transform: none !important;
+        width: 44px !important;
+        height: 44px !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border: 1px solid rgba(104,70,43,.23) !important;
+        border-radius: 50% !important;
+        background: rgba(250,247,241,.96) !important;
+        color: #39271c !important;
+        font-size: 24px !important;
+        line-height: 1 !important;
+        z-index: 10020 !important;
+        box-shadow: 0 5px 16px rgba(45,30,20,.07) !important;
+        touch-action: manipulation !important;
+        -webkit-tap-highlight-color: transparent !important;
+    }
+
+    /* Menu horizontal punya baris sendiri, tidak lagi menabrak logo. */
+    .navbar .nav-menu,
+    .nav-menu {
+        position: absolute !important;
+        left: 12px !important;
+        right: 12px !important;
+        top: auto !important;
+        bottom: 0 !important;
+        transform: none !important;
+        width: auto !important;
+        height: 45px !important;
+        display: grid !important;
+        grid-template-columns: .85fr .9fr 1.65fr .8fr !important;
+        align-items: center !important;
+        justify-items: center !important;
+        gap: 0 !important;
+        padding: 0 2px !important;
+        margin: 0 !important;
+        border-top: 1px solid rgba(155,112,72,.34) !important;
+        border-bottom: 1px solid rgba(155,112,72,.24) !important;
+        background: transparent !important;
+        z-index: 6 !important;
+        white-space: nowrap !important;
+    }
+
+    .navbar .nav-menu a,
+    .nav-menu a {
+        width: 100% !important;
+        text-align: center !important;
+        padding: 13px 1px 11px !important;
+        font-size: 9.5px !important;
+        font-weight: 700 !important;
+        letter-spacing: .05px !important;
+        line-height: 1 !important;
+        color: #33261e !important;
+    }
+
+    .navbar .nav-menu a.active::after {
+        left: 23% !important;
+        right: 23% !important;
+        bottom: 5px !important;
+    }
+
+    .mobile-drawer-head {
+        min-height: 86px !important;
+        gap: 12px !important;
+    }
+
+    .mobile-drawer-brand {
+        gap: 10px !important;
+    }
+
+    .mobile-drawer-logo {
+        width: 76px !important;
+        height: 62px !important;
+        flex: 0 0 76px !important;
+    }
+
+    .mobile-drawer-brand-title {
+        font-size: 13px !important;
+        letter-spacing: 1.5px !important;
+    }
+}
+
+@media (max-width: 390px) {
+    .navbar .nav-menu,
+    .nav-menu {
+        left: 7px !important;
+        right: 7px !important;
+        grid-template-columns: .82fr .88fr 1.72fr .78fr !important;
+    }
+
+    .navbar .nav-menu a,
+    .nav-menu a {
+        font-size: 8.6px !important;
+        letter-spacing: 0 !important;
+    }
+
+    .mobile-drawer-brand-title {
+        font-size: 12px !important;
+        letter-spacing: 1.15px !important;
+    }
+}
+
+/* =========================================================
+   UX POLISH v4 — PERFECT MOBILE NAV CENTER + LUXURY DIVIDER
+========================================================= */
+@media (max-width: 768px) {
+    /* Full-width elegant divider between logo row and menu row */
+    .navbar .nav-container,
+    .nav-container {
+        position: relative !important;
+    }
+
+    .navbar .nav-container::after,
+    .nav-container::after {
+        content: "" !important;
+        display: block !important;
+        position: absolute !important;
+        left: 20px !important;
+        right: 20px !important;
+        top: 79px !important;
+        height: 1px !important;
+        background: linear-gradient(
+            90deg,
+            rgba(155,112,72,0) 0%,
+            rgba(155,112,72,.42) 10%,
+            rgba(155,112,72,.42) 90%,
+            rgba(155,112,72,0) 100%
+        ) !important;
+        z-index: 5 !important;
+        pointer-events: none !important;
+    }
+
+    /* Lock the menu exactly to viewport center */
+    .navbar .nav-menu,
+    .nav-menu {
+        left: 50% !important;
+        right: auto !important;
+        width: calc(100% - 28px) !important;
+        transform: translateX(-50%) !important;
+        grid-template-columns: 1fr 1fr 1.85fr 1fr !important;
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+        border-top: 0 !important;
+        border-bottom: 1px solid rgba(155,112,72,.28) !important;
+    }
+
+    .navbar .nav-menu a,
+    .nav-menu a {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        min-width: 0 !important;
+    }
+}
+
+@media (max-width: 390px) {
+    .navbar .nav-container::after,
+    .nav-container::after {
+        left: 14px !important;
+        right: 14px !important;
+    }
+
+    .navbar .nav-menu,
+    .nav-menu {
+        width: calc(100% - 16px) !important;
+        grid-template-columns: .95fr .95fr 1.95fr .95fr !important;
+    }
+}

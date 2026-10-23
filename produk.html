@@ -1344,6 +1344,203 @@
         }
 
 
+    
+
+        /* =====================================
+           GALERI PRODUK — ELEGANT DOT SLIDER
+           Referensi: indikator pill + arrow kiri/kanan
+        ===================================== */
+        .gallery-dots {
+            position: fixed;
+            left: 50%;
+            bottom: 28px;
+            transform: translateX(-50%);
+            z-index: 100006;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 11px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: rgba(250,247,241,.86);
+            border: 1px solid rgba(255,255,255,.56);
+            box-shadow: 0 10px 32px rgba(0,0,0,.18);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .gallery-dots.visible { display: flex; }
+
+        .gallery-dot {
+            width: 8px;
+            height: 8px;
+            padding: 0;
+            border: 1px solid rgba(64,47,36,.42);
+            border-radius: 999px;
+            background: transparent;
+            cursor: pointer;
+            transition: width .28s ease, background .28s ease, border-color .28s ease, transform .2s ease;
+        }
+
+        .gallery-dot:hover { transform: scale(1.12); }
+
+        .gallery-dot.active {
+            width: 34px;
+            background: #8f6745;
+            border-color: #8f6745;
+        }
+
+        .gallery-nav {
+            width: 52px !important;
+            height: 52px !important;
+            border-radius: 50% !important;
+            border: 1px solid rgba(255,255,255,.56) !important;
+            background: rgba(250,247,241,.88) !important;
+            color: #35251b !important;
+            font-size: 32px !important;
+            box-shadow: 0 10px 28px rgba(0,0,0,.18) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: transform .2s ease, background .2s ease, box-shadow .2s ease !important;
+        }
+
+        .gallery-nav:hover {
+            background: #fffaf2 !important;
+            box-shadow: 0 13px 32px rgba(0,0,0,.22) !important;
+        }
+
+        .gallery-counter {
+            background: rgba(250,247,241,.86) !important;
+            border: 1px solid rgba(255,255,255,.56);
+            box-shadow: 0 8px 26px rgba(0,0,0,.12);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        @media (min-width: 769px) {
+            /* Desktop tetap punya thumbnail untuk pemilihan cepat; dots jadi aksen tambahan. */
+            .gallery-dots { bottom: 24px; }
+            .gallery-thumbnails.visible { bottom: 78px; }
+        }
+
+        @media (max-width: 768px) {
+            /* HP dibuat clean seperti video referensi: dots + panah, thumbnail disembunyikan. */
+            .gallery-thumbnails.visible { display: none !important; }
+
+            .gallery-dots {
+                bottom: 25px;
+                gap: 10px;
+                padding: 9px 13px;
+            }
+
+            .gallery-nav {
+                width: 44px !important;
+                height: 44px !important;
+                font-size: 28px !important;
+                top: 50% !important;
+            }
+
+            .gallery-prev { left: 10px !important; }
+            .gallery-next { right: 10px !important; }
+        }
+
+    </style>
+
+
+    <style>
+        /* FINAL CLEAN PRODUCT GALLERY OVERRIDE */
+        /* Dots + arrows menggantikan thumbnail lama di semua ukuran layar. */
+        .gallery-thumbnails,
+        .gallery-thumbnails.visible {
+            display: none !important;
+        }
+
+        /* Zoom tetap aktif, hanya angka 100% yang disembunyikan. */
+        .zoom-level,
+        #zoomReset {
+            display: none !important;
+        }
+
+        .zoom-controls {
+            left: auto !important;
+            right: 24px !important;
+            bottom: 24px !important;
+            transform: none !important;
+            gap: 8px !important;
+            padding: 7px !important;
+            border-radius: 999px !important;
+            background: rgba(250,247,241,.86) !important;
+            border: 1px solid rgba(255,255,255,.55) !important;
+            box-shadow: 0 10px 28px rgba(0,0,0,.16) !important;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .zoom-controls button {
+            width: 42px !important;
+            height: 42px !important;
+            border-radius: 50% !important;
+            background: rgba(255,255,255,.94) !important;
+            box-shadow: none !important;
+        }
+
+        @media (max-width: 768px) {
+            .zoom-controls {
+                right: 12px !important;
+                bottom: 14px !important;
+                padding: 5px !important;
+                gap: 5px !important;
+            }
+
+            .zoom-controls button {
+                width: 38px !important;
+                height: 38px !important;
+            }
+
+            .gallery-dots {
+                bottom: 18px !important;
+            }
+        }
+    </style>
+
+
+
+    <style>
+        /* =====================================================
+           UX FIX v3 — PRODUCT PAGE
+           1) Desktop hamburger tidak bertabrakan mascot search.
+           2) Tombol gallery tahan double-tap/ghost touch.
+           3) Mobile search turun setelah navbar dua-baris.
+        ====================================================== */
+        .gallery-nav,
+        .gallery-dot,
+        .zoom-controls button,
+        .modal-close {
+            touch-action: manipulation !important;
+            -webkit-tap-highlight-color: transparent !important;
+            user-select: none !important;
+            -webkit-user-select: none !important;
+        }
+
+        .gallery-nav {
+            -webkit-touch-callout: none !important;
+        }
+
+        @media (min-width: 769px) {
+            /* Search mascot memakai sisi kanan; hamburger dipindah ke kiri mascot. */
+            .navbar .menu-toggle,
+            .menu-toggle {
+                right: 330px !important;
+            }
+        }
+
+        @media (max-width: 768px) {
+            /* Search mascot berada setelah navbar, bukan menimpa baris menu. */
+            .product-search-launcher-wrap {
+                top: 136px !important;
+                right: 14px !important;
+            }
+        }
     </style>
 
 </head>
@@ -1374,7 +1571,7 @@
 
             </nav>
 
-            <button class="menu-toggle" id="menuToggle">
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Buka menu navigasi" aria-expanded="false">
                 ☰
             </button>
 
@@ -3047,6 +3244,12 @@
         ></div>
 
         <div
+            class="gallery-dots"
+            id="galleryDots"
+            aria-label="Navigasi foto produk"
+        ></div>
+
+        <div
             class="gallery-thumbnails"
             id="galleryThumbnails"
             aria-label="Pilihan foto produk"
@@ -3460,19 +3663,93 @@
         });
 
 
+        /* =========================================================
+           MOBILE SEARCH SCROLL GUARD v6
+
+           iPhone bisa memicu event scroll hanya karena keyboard muncul.
+           Karena itu window.scroll TIDAK boleh langsung dianggap sebagai
+           scroll manual. Scroll manual dideteksi dari gesture jari / wheel.
+        ========================================================== */
+
+        let searchTouchStartY = 0;
+        let searchManualScroll = false;
+        let searchManualScrollTimer = null;
+
+        function markSearchManualScroll() {
+            searchManualScroll = true;
+
+            if (searchManualScrollTimer) {
+                clearTimeout(searchManualScrollTimer);
+            }
+
+            searchManualScrollTimer = setTimeout(function() {
+                searchManualScroll = false;
+            }, 220);
+        }
+
+        function closeSearchForManualScroll() {
+            if (!searchPanelOpen) return;
+
+            if (searchInput && document.activeElement === searchInput) {
+                searchInput.blur();
+            }
+
+            closeProductSearch();
+        }
+
+        document.addEventListener(
+            "touchstart",
+            function(event) {
+                if (!searchPanelOpen || !event.touches || !event.touches.length) return;
+                searchTouchStartY = event.touches[0].clientY;
+            },
+            { passive: true }
+        );
+
+        document.addEventListener(
+            "touchmove",
+            function(event) {
+                if (!searchPanelOpen || !event.touches || !event.touches.length) return;
+
+                const currentY = event.touches[0].clientY;
+                const deltaY = Math.abs(currentY - searchTouchStartY);
+
+                if (deltaY > 12) {
+                    markSearchManualScroll();
+                    closeSearchForManualScroll();
+                }
+            },
+            { passive: true }
+        );
+
+        window.addEventListener(
+            "wheel",
+            function() {
+                if (!searchPanelOpen) return;
+                markSearchManualScroll();
+                closeSearchForManualScroll();
+            },
+            { passive: true }
+        );
+
         window.addEventListener(
             "scroll",
             function() {
                 const currentScrollY = window.scrollY;
+                const isTypingSearch =
+                    searchInput &&
+                    document.activeElement === searchInput;
 
+                /*
+                   Kalau cuma keyboard iOS yang menggeser viewport dan user
+                   masih mengetik, search tetap dibuka. Kalau gesture manual
+                   terdeteksi, touchmove/wheel di atas sudah menutupnya.
+                */
                 if (
                     searchPanelOpen &&
+                    !isTypingSearch &&
                     Math.abs(currentScrollY - lastScrollY) > 8
                 ) {
-                    /*
-                       Search box ditutup saat user mulai scroll,
-                       tetapi hasil pencarian tetap dipertahankan.
-                    */
                     closeProductSearch();
                 }
 
@@ -3547,11 +3824,33 @@
         }
 
 
+        /* =========================================================
+           MODAL SAFETY v6
+           Search / keyboard harus dibereskan sebelum modal dibuka.
+           Ini mencegah search bar nyangkut di atas modal dan mencegah
+           body tetap terkunci setelah keluar dari zoom.
+        ========================================================== */
+
+        function prepareForProductModal() {
+            if (searchInput && document.activeElement === searchInput) {
+                searchInput.blur();
+            }
+
+            if (searchPanelOpen) {
+                closeProductSearch();
+            }
+
+            document.body.style.overflow = "";
+            document.documentElement.style.overflow = "";
+        }
+
         /* =========================
            BUKA GAMBAR
         ========================== */
 
         function openImage(imageSource) {
+
+            prepareForProductModal();
 
             modalImage.src = imageSource;
 
@@ -3566,6 +3865,7 @@
             modal.classList.add("active");
 
             document.body.style.overflow = "hidden";
+            document.documentElement.style.overflow = "hidden";
 
         }
 
@@ -3678,6 +3978,8 @@
             modal.classList.remove("active");
 
             document.body.style.overflow = "";
+            document.documentElement.style.overflow = "";
+            document.body.style.touchAction = "";
 
             modalImage.src = "";
 
@@ -3970,28 +4272,16 @@
            DOUBLE CLICK ZOOM
         ========================== */
 
+        /*
+           Double-click / double-tap zoom dimatikan.
+           Zoom tetap tersedia lewat tombol +/- dan pinch dua jari.
+           Ini mencegah ghost touch / double tap membuat tampilan membesar tanpa sengaja.
+        */
         modalImage.addEventListener(
             "dblclick",
             function(event) {
-
+                event.preventDefault();
                 event.stopPropagation();
-
-                if (zoom === 1) {
-
-                    zoom = 2;
-
-                } else {
-
-                    zoom = 1;
-
-                    positionX = 0;
-
-                    positionY = 0;
-
-                }
-
-                updateImage();
-
             }
         );
 
@@ -4011,6 +4301,18 @@
 
         const galleryThumbnails =
             document.getElementById("galleryThumbnails");
+
+        const galleryDots =
+            document.getElementById("galleryDots");
+
+        /* Anti ghost-touch / double tap pada kontrol gallery. */
+        [galleryPrevButton, galleryNextButton, zoomOutButton, zoomInButton, zoomResetButton].forEach(function(control) {
+            if (!control) return;
+            control.addEventListener("dblclick", function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+            });
+        });
 
         let currentGallery = [];
         let currentGalleryIndex = 0;
@@ -4063,6 +4365,11 @@
                 hasMultiple
             );
 
+            galleryDots.classList.toggle(
+                "visible",
+                hasMultiple
+            );
+
             galleryCounter.textContent =
                 (currentGalleryIndex + 1) +
                 " / " +
@@ -4079,12 +4386,29 @@
 
                 });
 
+            galleryDots
+                .querySelectorAll(".gallery-dot")
+                .forEach(function(dot, index) {
+
+                    dot.classList.toggle(
+                        "active",
+                        index === currentGalleryIndex
+                    );
+
+                    dot.setAttribute(
+                        "aria-current",
+                        index === currentGalleryIndex ? "true" : "false"
+                    );
+
+                });
+
         }
 
 
         function buildGalleryThumbnails() {
 
             galleryThumbnails.innerHTML = "";
+            galleryDots.innerHTML = "";
 
             currentGallery.forEach(
                 function(imageSource, index) {
@@ -4123,6 +4447,19 @@
 
                     galleryThumbnails.appendChild(button);
 
+                    const dot = document.createElement("button");
+                    dot.type = "button";
+                    dot.className = "gallery-dot";
+                    dot.setAttribute("aria-label", "Buka foto " + (index + 1));
+
+                    dot.addEventListener("click", function(event) {
+                        event.stopPropagation();
+                        currentGalleryIndex = index;
+                        renderGalleryImage();
+                    });
+
+                    galleryDots.appendChild(dot);
+
                 }
             );
 
@@ -4151,8 +4488,10 @@
             buildGalleryThumbnails();
             renderGalleryImage();
 
+            prepareForProductModal();
             modal.classList.add("active");
             document.body.style.overflow = "hidden";
+            document.documentElement.style.overflow = "hidden";
 
         }
 
@@ -4194,6 +4533,7 @@
             "click",
             function(event) {
 
+                event.preventDefault();
                 event.stopPropagation();
 
                 moveGallery(-1);
@@ -4206,6 +4546,7 @@
             "click",
             function(event) {
 
+                event.preventDefault();
                 event.stopPropagation();
 
                 moveGallery(1);
@@ -4220,6 +4561,13 @@
 
                 event.stopPropagation();
 
+            }
+        );
+
+        galleryDots.addEventListener(
+            "click",
+            function(event) {
+                event.stopPropagation();
             }
         );
 
@@ -4682,6 +5030,13 @@
             }
         );
 
+
+        /* Emergency cleanup: jangan pernah tinggalkan halaman dalam kondisi scroll terkunci. */
+        window.addEventListener("pagehide", function() {
+            document.body.style.overflow = "";
+            document.documentElement.style.overflow = "";
+        });
+
     </script>
 
 
@@ -4689,6 +5044,7 @@
 
     <script src="js/reveal.js"></script>
 
+    <script src="js/script.js"></script>
 </body>
 
 </html>
